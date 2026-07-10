@@ -1,0 +1,14 @@
+interface:
+  display_name: "Route Analysis Debug"
+  short_description: "Inspect roads, surfaces, climbs, and quality"
+  default_prompt: "Use $route-analysis-debug to inspect route data before explaining or editing it."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "route-analysis"
+      description: "Route Analysis MCP server"
+      transport: "streamable_http"
+      url: "https://mcpapi.sherpa-map.com/mcp/route-analysis"
+policy:
+  allow_implicit_invocation: true
+

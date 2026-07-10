@@ -1,0 +1,14 @@
+interface:
+  display_name: "Ingredient Planning"
+  short_description: "Order roads, POIs, and stop constraints"
+  default_prompt: "Use $route-ingredient-planning to plan named-road and POI ingredients before generation."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "route-generator"
+      description: "Route Generator MCP server"
+      transport: "streamable_http"
+      url: "https://mcpapi.sherpa-map.com/mcp/route-generator"
+policy:
+  allow_implicit_invocation: true
+

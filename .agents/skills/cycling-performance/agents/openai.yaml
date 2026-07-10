@@ -1,0 +1,14 @@
+interface:
+  display_name: "Cycling Performance"
+  short_description: "Physics, ETA, speed, hydration, and setup"
+  default_prompt: "Use $cycling-performance to evaluate route speed, power, setup, and hydration."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "route-analysis"
+      description: "Route Analysis MCP server"
+      transport: "streamable_http"
+      url: "https://mcpapi.sherpa-map.com/mcp/route-analysis"
+policy:
+  allow_implicit_invocation: true
+

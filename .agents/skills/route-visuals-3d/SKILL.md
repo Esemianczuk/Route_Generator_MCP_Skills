@@ -1,0 +1,20 @@
+---
+name: route-visuals-3d
+description: Visual rendering skill for 2D maps, 3D hill-profile ribbons, 3D terrain cutouts, satellite floors, zooming, highlighting route portions, and selecting the correct visual tool. Use for any map/image/visual/zoom/terrain/satellite/topo/hill-profile request.
+---
+
+# Route Visuals 3D
+
+Choose the visual family by intent.
+
+## Tool Choice
+
+- Top-down map, satellite, streets, topo, relief: `route.render_map_image`.
+- Highlighted graph plus map or 3D elevation ribbon: `route.render_highlight_image`.
+- Actual ground/terrain cutout, Google Earth style, route draped on terrain: `route.render_terrain_image`.
+- Weather visuals: `route.render_weather_image`.
+
+Use `zoom_mode` or selection framing only when the user asks to zoom/crop/hug/focus. Whole-route requests should stay whole-route with selected spans highlighted.
+
+For "3D terrain" do not use the hill-profile ribbon. For "hill profile" do not use the terrain cutout unless the user asks for terrain.
+

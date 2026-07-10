@@ -1,0 +1,14 @@
+interface:
+  display_name: "Imported Courses"
+  short_description: "Match and analyze GPX/FIT/TCX courses"
+  default_prompt: "Use $imported-course-analysis to import and analyze a dropped route file."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "route-analysis"
+      description: "Route Analysis MCP server"
+      transport: "streamable_http"
+      url: "https://mcpapi.sherpa-map.com/mcp/route-analysis"
+policy:
+  allow_implicit_invocation: true
+

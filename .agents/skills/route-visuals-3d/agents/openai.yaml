@@ -1,0 +1,14 @@
+interface:
+  display_name: "Route Visuals"
+  short_description: "Pick map, profile, weather, or terrain renderers"
+  default_prompt: "Use $route-visuals-3d to render the right route visual without duplicate images."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "route-analysis"
+      description: "Route Analysis MCP server"
+      transport: "streamable_http"
+      url: "https://mcpapi.sherpa-map.com/mcp/route-analysis"
+policy:
+  allow_implicit_invocation: true
+

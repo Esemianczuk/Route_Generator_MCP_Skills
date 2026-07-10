@@ -1,0 +1,2 @@
+{"id":"010-3d-terrain","prompt":"Show me a Google Earth style 3D terrain cutout with satellite imagery.","must_call":["route.render_terrain_image"],"must_not_call":["route.render_highlight_image"]}
+

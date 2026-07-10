@@ -1,0 +1,2 @@
+{"id":"009-weather-summary","prompt":"What is the weather like if I start in 30 minutes?","must_call":["route.analyze_weather"],"must_not_call":["route.render_weather_image"]}
+

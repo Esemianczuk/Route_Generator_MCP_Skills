@@ -1,0 +1,2 @@
+{"id":"001-loop-generation","prompt":"Make a 40 mi scenic cycling route in Port Washington, WI with one image.","must_call":["route.geocode_locations","route.generate_routes"],"must_not_call":["route.search_pois"]}
+

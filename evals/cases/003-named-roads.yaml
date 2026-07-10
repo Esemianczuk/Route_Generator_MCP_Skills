@@ -1,0 +1,2 @@
+{"id":"003-named-roads","prompt":"Create a hilly route that uses Blue Mound Road and County Road F where possible.","must_call":["route.plan_ingredient_options","route.generate_named_road_route"],"must_not_call":[]}
+

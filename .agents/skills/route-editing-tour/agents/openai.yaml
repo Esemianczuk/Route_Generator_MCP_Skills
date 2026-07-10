@@ -1,0 +1,14 @@
+interface:
+  display_name: "Route Editing"
+  short_description: "Edit tours, reroute spans, undo and redo"
+  default_prompt: "Use $route-editing-tour to modify an existing route without losing session lineage."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "route-generator"
+      description: "Route Generator MCP server"
+      transport: "streamable_http"
+      url: "https://mcpapi.sherpa-map.com/mcp/route-generator"
+policy:
+  allow_implicit_invocation: true
+

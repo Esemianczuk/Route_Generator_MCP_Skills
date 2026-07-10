@@ -1,0 +1,14 @@
+interface:
+  display_name: "MCP Troubleshooting"
+  short_description: "Debug tool failures and route state"
+  default_prompt: "Use $mcp-troubleshooting to diagnose Route Generator MCP failures safely."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "route-generator"
+      description: "Route Generator MCP server"
+      transport: "streamable_http"
+      url: "https://mcpapi.sherpa-map.com/mcp/route-generator"
+policy:
+  allow_implicit_invocation: true
+

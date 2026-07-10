@@ -1,0 +1,14 @@
+interface:
+  display_name: "Route Generator Core"
+  short_description: "Generate and summarize route sessions"
+  default_prompt: "Use $route-generator-core to generate, summarize, or continue a stored route session."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "route-generator"
+      description: "Route Generator MCP server"
+      transport: "streamable_http"
+      url: "https://mcpapi.sherpa-map.com/mcp/route-generator"
+policy:
+  allow_implicit_invocation: true
+

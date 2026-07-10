@@ -1,0 +1,9 @@
+[skills]
+path = ".agents/skills"
+
+[route_generator_mcp]
+url = "https://mcpapi.sherpa-map.com/mcp/route-generator"
+
+[route_analysis_mcp]
+url = "https://mcpapi.sherpa-map.com/mcp/route-analysis"
+

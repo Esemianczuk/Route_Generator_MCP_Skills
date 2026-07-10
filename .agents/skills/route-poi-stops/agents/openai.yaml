@@ -1,0 +1,14 @@
+interface:
+  display_name: "POI Stops"
+  short_description: "Plan water, fuel, cafe, and parking stops"
+  default_prompt: "Use $route-poi-stops to find or add local cached stops along a route."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "route-generator"
+      description: "Route Generator MCP server"
+      transport: "streamable_http"
+      url: "https://mcpapi.sherpa-map.com/mcp/route-generator"
+policy:
+  allow_implicit_invocation: true
+

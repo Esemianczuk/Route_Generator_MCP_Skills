@@ -1,0 +1,2 @@
+{"id":"005-fuel-stops","prompt":"Make a paved motorcycle route to Sturgis with fuel stops every 200 mi.","must_call":["route.geocode_locations","route.search_cached_pois","route.generate_multi_point_route"],"must_not_call":[]}
+

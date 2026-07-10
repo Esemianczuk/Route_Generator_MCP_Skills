@@ -1,0 +1,2 @@
+{"id":"004-water-stops","prompt":"Give me a route from Brookfield to Sturgis with a water stop every 40 miles.","must_call":["route.geocode_locations","route.plan_water_stops","route.generate_multi_point_route"],"must_not_call":["route.search_pois"]}
+

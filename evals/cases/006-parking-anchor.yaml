@@ -1,0 +1,2 @@
+{"id":"006-parking-anchor","prompt":"Find a good non-private parking lot to start a 30 mi loop near Madison.","must_call":["route.search_parking_anchors"],"must_not_call":["route.search_pois"]}
+

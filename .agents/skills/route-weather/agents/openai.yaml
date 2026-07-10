@@ -1,0 +1,14 @@
+interface:
+  display_name: "Route Weather"
+  short_description: "Analyze and render route weather"
+  default_prompt: "Use $route-weather to analyze weather before choosing route weather visuals."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "route-analysis"
+      description: "Route Analysis MCP server"
+      transport: "streamable_http"
+      url: "https://mcpapi.sherpa-map.com/mcp/route-analysis"
+policy:
+  allow_implicit_invocation: true
+

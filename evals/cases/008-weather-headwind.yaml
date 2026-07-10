@@ -1,0 +1,2 @@
+{"id":"008-weather-headwind","prompt":"Show me the worst headwind section on a satellite map.","must_call":["route.analyze_weather","route.render_weather_image"],"must_not_call":[]}
+

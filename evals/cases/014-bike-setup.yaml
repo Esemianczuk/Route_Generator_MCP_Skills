@@ -1,0 +1,2 @@
+{"id":"014-bike-setup","prompt":"Compare road bike, gravel bike, and mountain bike setups up the biggest climb.","must_call":["route.evaluate_cycling_performance"],"must_not_call":[]}
+
