@@ -1,2 +1,2 @@
-{"id":"002-summary-followup","prompt":"Tell me about this route.","must_call":["route.summarize_route"],"must_not_call":["route.generate_routes"]}
+{"id":"002-summary-followup","expected_skill":"route-generator-core","prompt":"Tell me about this route.","must_call":["route.summarize_route"],"must_not_call":["route.generate_routes"]}
 

@@ -1,2 +1,2 @@
-{"id":"012-map-zoom","prompt":"Show a 2D map zoomed to miles 5 to 15.","must_call":["route.render_map_image"],"must_not_call":["route.render_highlight_image"]}
+{"id":"012-map-zoom","expected_skill":"route-visuals-3d","prompt":"Show a 2D map zoomed to miles 5 to 15.","must_call":["route.render_map_image"],"must_not_call":["route.render_highlight_image"]}
 

@@ -5,6 +5,14 @@ description: Tour editing, add/remove/replace legs, split/merge routes, undo/red
 
 # Route Editing Tour
 
+## Use when
+
+Use after generation/import to add, remove, split, merge, reverse, avoid, reroute, extend, undo, or redo route/tour content.
+
+## Do not use when
+
+Do not use for a new independent route with no relationship to an existing route workspace.
+
 Prefer the smallest edit that satisfies the request.
 
 ## Workflow
@@ -15,5 +23,19 @@ Prefer the smallest edit that satisfies the request.
 4. After edits, summarize new route alias/id, distance delta, changed span, and available undo.
 5. Use `route.undo_tour` and `route.redo_tour` only for explicit undo/redo requests.
 
+Use these exact mutation paths:
+
+- Avoid a named road or distance span: `route.analyze_osrm_segments` -> `route.plan_avoidance_edit` -> `route.apply_avoidance_edit`.
+- Add a generated conversational leg: `route.geocode_locations` when the destination is text, then `route.extend_tour`.
+- Merge, split, keep/remove a window, append, or prepend stored routes: `route.edit_tour`.
+- Undo/redo: `route.undo_tour` or `route.redo_tour`.
+
+Do not regenerate the entire route with `route.generate_routes` when a local revision tool can preserve the current route and lineage.
+
 Keep generated tours as new versions with lineage rather than overwriting hidden state.
 
+## Postconditions
+
+- The new route version preserves lineage and reports changed spans and distance delta.
+- The active route alias/id is explicit.
+- Undo availability is reported without performing undo unless requested.

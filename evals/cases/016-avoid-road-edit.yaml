@@ -1,2 +1,2 @@
-{"id":"016-avoid-road-edit","prompt":"Make sure we don't end up on Capitol and reroute around that section.","must_call":["route.summarize_route"],"must_not_call":["route.generate_routes"]}
+{"id":"016-avoid-road-edit","expected_skill":"route-editing-tour","prompt":"Make sure we don't end up on Capitol and reroute around that section.","must_call":["route.analyze_osrm_segments","route.plan_avoidance_edit","route.apply_avoidance_edit"],"must_not_call":["route.generate_routes"]}
 

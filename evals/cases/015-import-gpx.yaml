@@ -1,2 +1,2 @@
-{"id":"015-import-gpx","prompt":"Import this RideWithGPS GPX and tell me if the matched route has weird straight-line cuts.","must_call":["route.import_route"],"must_not_call":["route.generate_routes"]}
+{"id":"015-import-gpx","expected_skill":"imported-course-analysis","prompt":"Import this RideWithGPS GPX and tell me if the matched route has weird straight-line cuts.","must_call":["route.import_route"],"must_not_call":["route.generate_routes"]}
 

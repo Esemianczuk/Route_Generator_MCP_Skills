@@ -1,9 +1,17 @@
 ---
 name: mcp-troubleshooting
-description: Troubleshooting Route Generator MCP tool failures, missing route sessions, unavailable bridge errors, duplicate visuals, wrong visual family, failed POI additions, model tool confusion, and provider/client integration issues. Use when a route MCP call errors or the assistant/tool behavior contradicts expected state.
+description: Diagnose explicit Route Generator MCP failures, missing state, contradictory tool results, duplicate artifacts, or provider/transport errors. Use only after a call failed or observed state conflicts with a prior confirmed result; do not trigger for ordinary route analysis.
 ---
 
 # MCP Troubleshooting
+
+## Use when
+
+Use after an explicit error, timeout, missing confirmed artifact, contradictory route state, or reproducible provider/transport failure.
+
+## Do not use when
+
+Do not use speculatively for an unusual-looking but successful route; use route analysis first.
 
 Trust backend state and tool results over model text.
 
@@ -17,3 +25,10 @@ Trust backend state and tool results over model text.
 
 Redact provider keys and avoid echoing secret-bearing URLs.
 
+Do not invent diagnostic MCP tools. The client tool trace is the primary evidence. If backend route-state confirmation is required, use the real `route.list_sessions` or `route.summarize_route`. The only GPX import tool is `route.import_route`; retry it only after correcting its endpoint, arguments, staged-upload handle, or session binding. A user asking what to inspect does not by itself require an immediate retry, so do not include a conditional future retry in the current call plan.
+
+## Postconditions
+
+- The failing layer is identified as provider, MCP transport, tool validation, route engine, artifact delivery, or client rendering.
+- A retry changes a justified argument or state condition instead of repeating blindly.
+- Secrets and secret-bearing URLs are absent from the report.

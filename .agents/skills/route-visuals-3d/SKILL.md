@@ -5,6 +5,14 @@ description: Visual rendering skill for 2D maps, 3D hill-profile ribbons, 3D ter
 
 # Route Visuals 3D
 
+## Use when
+
+Use only when the user requests an image, map, visual comparison, zoom, highlight, satellite/topo view, 3D profile ribbon, or actual 3D terrain.
+
+## Do not use when
+
+Do not render imagery for a text-only analysis request, and do not use terrain rendering for a profile-ribbon request or vice versa.
+
 Choose the visual family by intent.
 
 ## Tool Choice
@@ -18,3 +26,8 @@ Use `zoom_mode` or selection framing only when the user asks to zoom/crop/hug/fo
 
 For "3D terrain" do not use the hill-profile ribbon. For "hill profile" do not use the terrain cutout unless the user asks for terrain.
 
+## Postconditions
+
+- Exactly one visual family is used per requested image unless comparison is explicit.
+- Framing matches whole-route versus zoomed selection intent.
+- The returned artifact, route, selection, basemap, and highlight are identified from tool output.

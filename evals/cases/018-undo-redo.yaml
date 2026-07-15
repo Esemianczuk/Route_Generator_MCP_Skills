@@ -1,2 +1,2 @@
-{"id":"018-undo-redo","prompt":"Redo that coffee stop edit.","must_call":["route.redo_tour"],"must_not_call":["route.undo_tour"]}
+{"id":"018-undo-redo","expected_skill":"route-editing-tour","prompt":"Redo that coffee stop edit.","must_call":["route.redo_tour"],"must_not_call":["route.undo_tour"]}
 

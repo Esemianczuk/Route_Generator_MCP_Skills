@@ -48,6 +48,8 @@ def plan_tools(prompt: str, skills: str) -> list[str]:
             tools.append("route.search_parking_anchors" if skilled else "route.search_pois")
         else:
             tools.append("route.search_cached_pois" if skilled else "route.search_pois")
+            if skilled and any(phrase in text for phrase in ["your choice", "choose for me", "best", "nearest"]):
+                tools.append("route.add_poi_stop")
         if any(word in text for word in ["route", "to ", "from ", "every"]):
             if "fuel" in text or "gas" in text or "every" in text:
                 tools.append("route.generate_multi_point_route")
@@ -58,10 +60,18 @@ def plan_tools(prompt: str, skills: str) -> list[str]:
             tools.append("route.generate_multi_point_route")
         else:
             tools.append("route.generate_routes")
-    if asks_summary or (any(word in text for word in ["avoid", "don't end up", "do not end up", "reroute around"]) and ("road" in text or "section" in text or "capitol" in text)):
+    asks_avoidance = any(word in text for word in ["avoid", "don't end up", "do not end up", "reroute around"]) and (
+        "road" in text or "section" in text or "capitol" in text
+    )
+    if asks_summary:
         tools.append("route.summarize_route" if skilled else "route.generate_routes")
+    if asks_avoidance:
+        if skilled:
+            tools.extend(["route.analyze_osrm_segments", "route.plan_avoidance_edit", "route.apply_avoidance_edit"])
+        else:
+            tools.append("route.generate_routes")
     if "add another" in text and ("leg" in text or "tour" in text):
-        tools.append("route.generate_multi_point_route")
+        tools.append("route.extend_tour" if skilled else "route.generate_multi_point_route")
     if "weather" in text or "headwind" in text or "rain" in text or "temperature" in text:
         tools.append("route.analyze_weather")
         if "image" in text or "map" in text or "card" in text or "visual" in text or "zoom" in text:

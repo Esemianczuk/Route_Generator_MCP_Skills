@@ -1,2 +1,2 @@
-{"id":"011-3d-profile","prompt":"Show the biggest climb as a 3D hill profile with satellite under it.","must_call":["route.render_highlight_image"],"must_not_call":["route.render_terrain_image"]}
+{"id":"011-3d-profile","expected_skill":"route-visuals-3d","prompt":"Show the biggest climb as a 3D hill profile with satellite under it.","must_call":["route.render_highlight_image"],"must_not_call":["route.render_terrain_image"]}
 

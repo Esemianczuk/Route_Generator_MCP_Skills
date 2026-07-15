@@ -1,2 +1,1 @@
-{"id":"017-tour-leg","prompt":"Add another 50 mi flat leg to that tour and end in Madison.","must_call":["route.geocode_locations","route.generate_multi_point_route"],"must_not_call":[]}
-
+{"id":"017-tour-leg","expected_skill":"route-editing-tour","prompt":"Add another 50 mi flat leg to that tour and end in Madison.","must_call":["route.geocode_locations","route.extend_tour"],"must_not_call":["route.generate_routes","route.generate_multi_point_route"]}

@@ -5,6 +5,14 @@ description: Route analysis and debugging skill for road names, surfaces, traffi
 
 # Route Analysis Debug
 
+## Use when
+
+Use to inspect stored roads, surfaces, paths, climbs, scenic/traffic/curviness scores, OSRM segments, off-network spans, or route-quality anomalies.
+
+## Do not use when
+
+Do not use as a substitute for weather, cycling performance, route creation, or explicit transport-error diagnosis.
+
 Analyze stored route data before guessing.
 
 ## Workflow
@@ -16,3 +24,8 @@ Analyze stored route data before guessing.
 
 Never claim scenic/traffic/surface data is unavailable until a summary/analysis tool confirms it.
 
+## Postconditions
+
+- Findings identify the route and distance spans they apply to.
+- Missing or low-confidence data is stated explicitly.
+- Any proposed edit is based on an isolated offending span.

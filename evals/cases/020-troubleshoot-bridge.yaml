@@ -1,2 +1,1 @@
-{"id":"020-troubleshoot-bridge","prompt":"The route generator bridge returned non-JSON HTTP 404 when I dropped a GPX. What should we inspect?","must_call":["route.import_route"],"must_not_call":["route.generate_routes"]}
-
+{"id":"020-troubleshoot-bridge","expected_skill":"mcp-troubleshooting","prompt":"The route generator bridge returned non-JSON HTTP 404 when I dropped a GPX. What should we inspect?","must_call":[],"must_not_call":["route.generate_routes"]}

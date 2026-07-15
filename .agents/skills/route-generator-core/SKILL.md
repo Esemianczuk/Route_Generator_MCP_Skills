@@ -5,15 +5,30 @@ description: Core Route Generator MCP operating procedure for generating, summar
 
 # Route Generator Core
 
+## Use when
+
+Use for creating a route, selecting the generation mode, comparing generated alternatives, or summarizing the active route after generation.
+
+## Do not use when
+
+Do not use it to answer weather, cycling-physics, visual-only, imported-file, or explicit failure-diagnosis requests when a narrower skill applies.
+
 Start by preserving session state. Use the current session id for every route tool unless the user explicitly asks to start a new workspace.
 
 ## Workflow
 
-1. Clarify only missing essentials: location/anchors, route mode, distance/units, activity profile, and count.
+1. Clarify only missing essentials: location/anchors, route mode, distance/units, activity profile, and count. Call `route.geocode_locations` when named anchors do not yet have coordinates.
 2. Generate with `route.generate_routes`, `route.generate_multi_point_route`, or a specialized ingredient tool.
 3. After generation, summarize the returned route names/aliases, distance, ascent, climbs, surfaces, warnings, and artifacts.
 4. For follow-ups like "tell me about it", call `route.summarize_route`; do not generate again.
 5. Mention images only when the latest tool result returned image artifacts.
 
-Read `../../../../references/tool-contracts/route-tools.md` when tool choice is unclear.
+For a catalog/help request, use the compatibility tool `route.tool_index` without generating a route.
 
+Read [references/route-tools.md](references/route-tools.md) when tool choice is unclear.
+
+## Postconditions
+
+- A generation result names the active route alias/id and route workspace identifiers.
+- A follow-up summary never creates a replacement route.
+- Claims about distance, warnings, or artifacts are grounded in the latest tool result.

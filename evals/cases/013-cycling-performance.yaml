@@ -1,2 +1,2 @@
-{"id":"013-cycling-performance","prompt":"If I have 200 watt FTP and weigh 120 lb on a road bike, how long will this take and how much water should I bring?","must_call":["route.evaluate_cycling_performance"],"must_not_call":["route.summarize_route"]}
+{"id":"013-cycling-performance","expected_skill":"cycling-performance","prompt":"If I have 200 watt FTP and weigh 120 lb on a road bike, how long will this take and how much water should I bring?","must_call":["route.evaluate_cycling_performance"],"must_not_call":["route.summarize_route"]}
 

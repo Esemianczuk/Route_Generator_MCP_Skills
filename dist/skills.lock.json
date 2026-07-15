@@ -1,0 +1,244 @@
+{
+  "lock_version": 1,
+  "bundle_version": "0.2.0",
+  "repo": "Route_Generator_MCP_Skills",
+  "repo_commit": "ca846e245b0dee49fdd6c4c5c0005658034e4d8e",
+  "formats": [
+    "agentskills.io",
+    "codex-local-skills",
+    "openai-hosted-skills"
+  ],
+  "runtime_policy": {
+    "prompt_injection_allowed": false,
+    "native_runtime_required_for_execution_claim": true,
+    "required_mcp_servers": [
+      "route-generator",
+      "route-analysis"
+    ]
+  },
+  "skills": [
+    {
+      "name": "cycling-performance",
+      "sha256": "a032d6ddc91b7f9eeabc96cebc6915b0762bc7e86128357e8f2608e1eb77ee6c",
+      "files": {
+        "SKILL.md": "5978794c4e396d928fe5f868136de51b379bf2266418df1f9f2e87baf2e52d04",
+        "agents/openai.yaml": "d3d29cf2a68588e4a2133047443887de70a7c7adcd782818ba4b900e0865d7fc"
+      },
+      "tool_dependencies": [
+        "route.evaluate_cycling_performance"
+      ]
+    },
+    {
+      "name": "imported-course-analysis",
+      "sha256": "9a56d1751b6580c58a38a4285ea1331fb42023a41e2d5b42bb1b7a7f99441eba",
+      "files": {
+        "SKILL.md": "69811f8ada604b82ca4da97afb225cc2c8007abfa7b8e713a2cf904cbec2852a",
+        "agents/openai.yaml": "a006ded12eb6d662f819ee35f1da1bee9e46d0305c49be86e6f96b50628d9802"
+      },
+      "tool_dependencies": [
+        "route.import_route"
+      ]
+    },
+    {
+      "name": "mcp-troubleshooting",
+      "sha256": "84c3f56f8f9e8cf147b225203543baad96844855dca22330847585cb739be68c",
+      "files": {
+        "SKILL.md": "4643efeea5b656c9e5df8f76e54763ddf85d74f8f843fd895189eb320bef4f38",
+        "agents/openai.yaml": "cf192dbf5df2afe1e4b52136b225aa6487e2b9baf8e161fa302fa81923289d5e"
+      },
+      "tool_dependencies": [
+        "route.import_route",
+        "route.list_sessions",
+        "route.summarize_route"
+      ]
+    },
+    {
+      "name": "route-analysis-debug",
+      "sha256": "e2427903fd1d057fccdf3572f7a1e62a29a318b2d723bd185ce835f6a6c5bbb7",
+      "files": {
+        "SKILL.md": "f208431e095b74978051bd6df853916f41b06e6bdc0b6f370f9f71b013455a22",
+        "agents/openai.yaml": "8e03b8646c2262991ad19da7fe0d03dcf7ac3350041abbea378010d325a2c044"
+      },
+      "tool_dependencies": [
+        "route.summarize_route"
+      ]
+    },
+    {
+      "name": "route-editing-tour",
+      "sha256": "731bfdb66977aa65a34da9b06f3a4e4ba6c10269da98388816c8a41b5f872aad",
+      "files": {
+        "SKILL.md": "b0f8f1316e6452115dbf067b1a53ea165876ad201159ed26c97d61cdb9b4e3cc",
+        "agents/openai.yaml": "f8f6d63c548e80491d2a17c35c4736e8b31a637eeed8b7d51690da99f24a8c43"
+      },
+      "tool_dependencies": [
+        "route.analyze_osrm_segments",
+        "route.apply_avoidance_edit",
+        "route.edit_tour",
+        "route.extend_tour",
+        "route.generate_routes",
+        "route.geocode_locations",
+        "route.plan_avoidance_edit",
+        "route.redo_tour",
+        "route.undo_tour"
+      ]
+    },
+    {
+      "name": "route-generator-core",
+      "sha256": "b2a81d2aad98c9d45d81681f1c03e5332d580ee7c15795516e55d3afbfe567b7",
+      "files": {
+        "SKILL.md": "dcab036f756d6e426a27b343fc83c6110c0c81d17f5936ecbc350800fc35de45",
+        "agents/openai.yaml": "7af650b9093c8aa842bff3b6da902408a071f92b12d5f168dced57abce24ad3e",
+        "references/route-tools.md": "3a85c5d965867dd9111fd2e61723bc63c9048c9d0d0ce4304c97b6d404298b8d"
+      },
+      "tool_dependencies": [
+        "route.generate_multi_point_route",
+        "route.generate_named_road_route",
+        "route.generate_routes",
+        "route.geocode_locations",
+        "route.summarize_route",
+        "route.tool_index"
+      ]
+    },
+    {
+      "name": "route-ingredient-planning",
+      "sha256": "2bcdbeab1c078a8f96ed96f9f79aa5bfb7b7adfe28ac162ed95e54717647ab15",
+      "files": {
+        "SKILL.md": "ad144dc583cb9fbf54102c8bd96fd3330459caecfad71dede8a4476750748fca",
+        "agents/openai.yaml": "526b4054167081b9feeb96598d0d0ad476bc3b8cb5c935e7dd51edf04051237c",
+        "references/agent-recipes.md": "cc356394f6bb91843cb0b72cada72fbdf9391775fd73219839e9ee974d17c21c"
+      },
+      "tool_dependencies": [
+        "route.generate_multi_point_route",
+        "route.generate_named_road_route",
+        "route.geocode_locations",
+        "route.plan_ingredient_options",
+        "route.plan_poi_stops",
+        "route.plan_water_stops",
+        "route.search_cached_pois"
+      ]
+    },
+    {
+      "name": "route-poi-stops",
+      "sha256": "35a3c26221a5c05885159afaba339b68a12e58f8a2795f438a61377949dc1006",
+      "files": {
+        "SKILL.md": "a8a15bd59140c26dc607a8cd7a5b75819a9ee8a1b958add31a0e55b71a3da652",
+        "agents/openai.yaml": "a443531c43d720d1f28a75668f77073c8b8545d410662b1123090b8524ace468"
+      },
+      "tool_dependencies": [
+        "route.add_poi_stop",
+        "route.generate_loop",
+        "route.generate_routes",
+        "route.plan_poi_stops",
+        "route.plan_water_stops",
+        "route.search_cached_pois",
+        "route.search_parking_anchors",
+        "route.search_pois",
+        "route.search_water_sources"
+      ]
+    },
+    {
+      "name": "route-visuals-3d",
+      "sha256": "fb171cce9fb8e265bace8ff0c43756fb2863021e64619d485b0038cb90f714f2",
+      "files": {
+        "SKILL.md": "b06ba3d9e80a892a087c5a4b0104193ccc13cc4febe939c13b93d9bf53a16f4d",
+        "agents/openai.yaml": "018c4b9a5059e9c3b9c1dee5fdd611bb658f8233eec413426bdc851a2bf32749"
+      },
+      "tool_dependencies": [
+        "route.render_highlight_image",
+        "route.render_map_image",
+        "route.render_terrain_image",
+        "route.render_weather_image"
+      ]
+    },
+    {
+      "name": "route-weather",
+      "sha256": "2e912ed1c2fc2e2f0a94fef9926e65f0d43ceaabfde41a2f75541e327ec36537",
+      "files": {
+        "SKILL.md": "132422dbc839e12eb2c7b95683d7db23807c9c826cb95b17b2b3dccb8990522a",
+        "agents/openai.yaml": "604aa4a11a7896a967dcd45c82021515f8198f192884117caf01c4102234b091"
+      },
+      "tool_dependencies": [
+        "route.analyze_weather",
+        "route.render_weather_image"
+      ]
+    }
+  ],
+  "catalog": {
+    "repo": "Route_Generator_MCP_Skills",
+    "commit": "ca846e2",
+    "skill_count": 10,
+    "skills": [
+      {
+        "name": "cycling-performance",
+        "description": "Cycling physics, setup, ETA, power, FTP, speed, hydration, sweat, sodium, calories, carbs, tire/bike choice, and rider handling analysis for stored routes. Use whenever a cycling user asks how long, how fast, how hard, what bike/tires, water/fuel needs, or where they will be when.",
+        "display_name": "Cycling Performance",
+        "short_description": "Physics, ETA, speed, hydration, and setup",
+        "path": ".agents/skills/cycling-performance"
+      },
+      {
+        "name": "imported-course-analysis",
+        "description": "Imported GPX/FIT/TCX/course matching, sparse turn-point matching, activity dense-track matching, off-network spans, confidence, and route-session analysis. Use when users drag/drop routes, ask about RideWithGPS/Garmin imports, or need imported course questions answered.",
+        "display_name": "Imported Courses",
+        "short_description": "Match and analyze GPX/FIT/TCX courses",
+        "path": ".agents/skills/imported-course-analysis"
+      },
+      {
+        "name": "mcp-troubleshooting",
+        "description": "Diagnose explicit Route Generator MCP failures, missing state, contradictory tool results, duplicate artifacts, or provider/transport errors. Use only after a call failed or observed state conflicts with a prior confirmed result; do not trigger for ordinary route analysis.",
+        "display_name": "MCP Troubleshooting",
+        "short_description": "Debug tool failures and route state",
+        "path": ".agents/skills/mcp-troubleshooting"
+      },
+      {
+        "name": "route-analysis-debug",
+        "description": "Route analysis and debugging skill for road names, surfaces, traffic, curviness, scenic scores, climbs, off-network spans, OSRM navigation, and route-quality diagnostics. Use when users ask why a route looks odd, what roads it uses, what sections are paved/unpaved, whether it includes a road, or why generation fell short.",
+        "display_name": "Route Analysis Debug",
+        "short_description": "Inspect roads, surfaces, climbs, and quality",
+        "path": ".agents/skills/route-analysis-debug"
+      },
+      {
+        "name": "route-editing-tour",
+        "description": "Tour editing, add/remove/replace legs, split/merge routes, undo/redo, avoid roads, exclusion zones, reroute around sections, and preserving analysis state across edited route versions. Use for any route manipulation after generation or import.",
+        "display_name": "Route Editing",
+        "short_description": "Edit tours, reroute spans, undo and redo",
+        "path": ".agents/skills/route-editing-tour"
+      },
+      {
+        "name": "route-generator-core",
+        "description": "Core Route Generator MCP operating procedure for generating, summarizing, and following up on stored routes. Use for any route generation, best-in-area, loop, point-to-point, multi-route comparison, route-session continuity, or \"tell me about this route\" request.",
+        "display_name": "Route Generator Core",
+        "short_description": "Generate and summarize route sessions",
+        "path": ".agents/skills/route-generator-core"
+      },
+      {
+        "name": "route-ingredient-planning",
+        "description": "Multi-ingredient planning for routes that must combine named roads, desired road classes, repeated water/fuel cadence, multiple POIs, exclusions, or several mandatory anchors. Use for \"must ride\", \"avoid\", repeated stops, fuel-stop tours, or complex ingredient ordering before generation; use route-poi-stops for a single parking/start-anchor search.",
+        "display_name": "Ingredient Planning",
+        "short_description": "Order roads, POIs, and stop constraints",
+        "path": ".agents/skills/route-ingredient-planning"
+      },
+      {
+        "name": "route-poi-stops",
+        "description": "Local cached POI, water, fuel, cafe, restroom, parking/start-anchor, and stop-insertion workflows for Route Generator MCP. Use when users ask to find, rank, add, compare, visualize, or plan a POI or parking start; this is the primary skill for a single non-private parking/start-anchor request.",
+        "display_name": "POI Stops",
+        "short_description": "Plan water, fuel, cafe, and parking stops",
+        "path": ".agents/skills/route-poi-stops"
+      },
+      {
+        "name": "route-visuals-3d",
+        "description": "Visual rendering skill for 2D maps, 3D hill-profile ribbons, 3D terrain cutouts, satellite floors, zooming, highlighting route portions, and selecting the correct visual tool. Use for any map/image/visual/zoom/terrain/satellite/topo/hill-profile request.",
+        "display_name": "Route Visuals",
+        "short_description": "Pick map, profile, weather, or terrain renderers",
+        "path": ".agents/skills/route-visuals-3d"
+      },
+      {
+        "name": "route-weather",
+        "description": "Weather analysis and weather visualization workflow for route sessions. Use for rain, wind, headwind/tailwind, gusts, temperature, heat, UV, cloud cover, weather windows, start time assumptions, and weather maps/cards.",
+        "display_name": "Route Weather",
+        "short_description": "Analyze and render route weather",
+        "path": ".agents/skills/route-weather"
+      }
+    ]
+  },
+  "bundle_sha256": "3c550a8d07321f80b344290d6fa36a04151940088ca4dc5bf6d4cd3a630cb916"
+}

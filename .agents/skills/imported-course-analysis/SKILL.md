@@ -5,15 +5,29 @@ description: Imported GPX/FIT/TCX/course matching, sparse turn-point matching, a
 
 # Imported Course Analysis
 
+## Use when
+
+Use when a GPX, FIT, TCX, RideWithGPS, Garmin, activity track, or sparse course has been staged for import or needs matching analysis.
+
+## Do not use when
+
+Do not use for routes already generated and stored normally unless the question is specifically about their import/match quality.
+
 Keep imported courses shape-faithful.
 
 ## Workflow
 
-1. Import the file into the current route session.
-2. Detect sparse route/course points versus dense activity tracks.
-3. Use turn-point matching for sparse route files and dense matching for activity points.
-4. Summarize confidence, distance, surfaces, off-network spans, and any straight-line or unmatched cuts.
-5. Do not reroute imported geometry unless the user asks to edit it.
+1. Call `route.import_route` with the opaque staged-upload handle supplied by the client and the current client session ID.
+2. Read its returned match mode; the tool itself detects sparse route/course points versus dense activity tracks and performs the appropriate matching path.
+3. Summarize its confidence, distance, surfaces, off-network spans, and any straight-line or unmatched cuts.
+4. Do not reroute imported geometry unless the user asks to edit it.
+
+`route.import_route` is the complete remote MCP import boundary. Do not invent separate import-course, track-density, or course-matching tool calls.
 
 If a map has straight-line cuts, inspect the matching result before presenting it as valid.
 
+## Postconditions
+
+- The imported shape remains authoritative unless the user asks to reroute it.
+- Match mode, confidence, off-network spans, surfaces, and distance discrepancy are reported.
+- Suspicious straight cuts are identified rather than silently accepted.

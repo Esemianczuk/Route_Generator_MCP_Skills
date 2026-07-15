@@ -1,2 +1,1 @@
-{"id":"007-coffee-stop","prompt":"Add a coffee stop near the middle of this route, your choice.","must_call":["route.search_cached_pois"],"must_not_call":[]}
-
+{"id":"007-coffee-stop","expected_skill":"route-poi-stops","prompt":"Add a coffee stop near the middle of this route, your choice.","must_call":["route.search_cached_pois","route.add_poi_stop"],"must_not_call":["route.search_pois"]}

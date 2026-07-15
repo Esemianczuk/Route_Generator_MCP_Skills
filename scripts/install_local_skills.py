@@ -8,7 +8,7 @@ from pathlib import Path
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--target", default=str(Path.home() / ".codex" / "skills"))
+    parser.add_argument("--target", default=str(Path.home() / ".agents" / "skills"))
     args = parser.parse_args()
     source = Path(__file__).resolve().parents[1] / ".agents" / "skills"
     target = Path(args.target)
@@ -24,4 +24,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

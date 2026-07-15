@@ -1,2 +1,2 @@
-{"id":"019-tool-index","prompt":"List the Route Generator MCP tools and explain which one to use for a hilly loop.","must_call":["route.tool_index"],"must_not_call":["route.generate_routes"]}
+{"id":"019-tool-index","expected_skill":"route-generator-core","prompt":"List the Route Generator MCP tools and explain which one to use for a hilly loop.","must_call":["route.tool_index"],"must_not_call":["route.generate_routes"]}
 
