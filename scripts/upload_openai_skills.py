@@ -18,7 +18,7 @@ def _multipart_zip(path: Path) -> tuple[bytes, str]:
     boundary = "----route-skill-" + secrets.token_hex(12)
     header = (
         f"--{boundary}\r\n"
-        f'Content-Disposition: form-data; name="files"; filename="{path.name}"\r\n'
+        f'Content-Disposition: form-data; name="files[]"; filename="{path.name}"\r\n'
         "Content-Type: application/zip\r\n\r\n"
     ).encode("utf-8")
     body = header + path.read_bytes() + f"\r\n--{boundary}--\r\n".encode("utf-8")
