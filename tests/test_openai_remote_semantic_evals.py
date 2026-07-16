@@ -7,7 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from run_openai_remote_semantic_evals import build_remote_tools, build_response_body, extract_evidence, grade_case
+from run_openai_remote_semantic_evals import _load_cases, build_remote_tools, build_response_body, extract_evidence, grade_case
 
 
 def test_remote_payload_has_exactly_two_mcp_tools_and_no_function_tools() -> None:
@@ -39,7 +39,7 @@ def test_native_payload_places_shell_before_exactly_two_mcp_tools() -> None:
 
     assert [tool["type"] for tool in tools] == ["shell", "mcp", "mcp"]
     assert tools[0]["environment"]["skills"] == [
-        {"type": "skill_reference", "skill_id": "skill_123", "version": 7}
+        {"type": "skill_reference", "skill_id": "skill_123", "version": "7"}
     ]
 
 
@@ -126,6 +126,92 @@ def test_case_grading_requires_expected_remote_calls_and_skill_read() -> None:
     assert graded["ok"] is False
     assert graded["missing_expected_tools"] == ["route.render_weather_image"]
     assert graded["skill_read_missing"] is True
+
+
+def test_case_grading_enforces_tool_order_and_exact_call_counts() -> None:
+    evidence = extract_evidence(
+        {
+            "id": "resp_complex_route",
+            "output": [
+                {
+                    "type": "mcp_call",
+                    "server_label": "route_generator",
+                    "name": "route.geocode_locations",
+                    "output": "{}",
+                },
+                {
+                    "type": "mcp_call",
+                    "server_label": "route_generator",
+                    "name": "route.plan_ingredient_options",
+                    "output": "{}",
+                },
+                {
+                    "type": "mcp_call",
+                    "server_label": "route_generator",
+                    "name": "route.generate_multi_point_route",
+                    "output": "{}",
+                },
+            ],
+        },
+        [],
+    )
+    case = {
+        "id": "complex-route",
+        "prompt": "Build it.",
+        "must_call": [
+            "route.geocode_locations",
+            "route.plan_ingredient_options",
+            "route.generate_multi_point_route",
+        ],
+        "must_call_in_order": [
+            "route.geocode_locations",
+            "route.plan_ingredient_options",
+            "route.generate_multi_point_route",
+        ],
+        "exact_call_counts": {
+            "route.plan_ingredient_options": 1,
+            "route.generate_multi_point_route": 1,
+        },
+        "must_not_call": ["route.generate_routes", "route.plan_water_stops"],
+        "expected_skill": "route-ingredient-planning",
+    }
+
+    assert grade_case(case, evidence, expected_skill_read=False)["ok"] is True
+
+    evidence.mcp_calls.append(
+        {
+            "tool": "route.generate_multi_point_route",
+            "server_label": "route_generator",
+            "arguments": {},
+            "ok": True,
+            "error": None,
+        }
+    )
+    graded = grade_case(case, evidence, expected_skill_read=False)
+    assert graded["ok"] is False
+    assert graded["exact_call_count_mismatches"]["route.generate_multi_point_route"] == {
+        "expected": 1,
+        "actual": 2,
+    }
+
+
+def test_complex_route_cases_encode_preplan_and_existing_route_split() -> None:
+    cases = _load_cases(ROOT)
+    new_route = cases["004-water-stops"]
+    assert "100 mi scenic cycling route" in new_route["prompt"]
+    assert new_route["must_call_in_order"] == [
+        "route.geocode_locations",
+        "route.plan_ingredient_options",
+        "route.generate_multi_point_route",
+    ]
+    assert new_route["exact_call_counts"]["route.generate_multi_point_route"] == 1
+    assert "route.plan_water_stops" in new_route["must_not_call"]
+    assert "route.generate_routes" in new_route["must_not_call"]
+
+    skill_text = (ROOT / ".agents" / "skills" / "route-ingredient-planning" / "SKILL.md").read_text(encoding="utf-8")
+    assert "`route.plan_water_stops` and `route.plan_poi_stops` require an existing stored route" in skill_text
+    assert "exactly one `route.generate_multi_point_route` call" in skill_text
+    assert "must not be called manually by the model" in skill_text
 
 
 def test_single_image_cases_require_exactly_one_remote_artifact() -> None:

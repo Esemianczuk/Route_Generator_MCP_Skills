@@ -257,7 +257,7 @@ def build_remote_tools(
                 "environment": {
                     "type": "container_auto",
                     "skills": [
-                        {"type": "skill_reference", "skill_id": item["skill_id"], "version": int(item["version"])}
+                        {"type": "skill_reference", "skill_id": item["skill_id"], "version": str(item["version"])}
                         for item in skill_refs
                     ],
                 },
@@ -411,6 +411,25 @@ def grade_case(case: JsonDict, evidence: Evidence, expected_skill_read: bool) ->
     forbidden_expected = [str(item) for item in case.get("must_not_call", [])]
     missing = [tool for tool in expected if tool not in called]
     forbidden = [tool for tool in forbidden_expected if tool in called]
+    ordered_expected = [str(item) for item in case.get("must_call_in_order", [])]
+    ordered_positions: list[int] = []
+    next_index = 0
+    for tool in ordered_expected:
+        try:
+            position = called.index(tool, next_index)
+        except ValueError:
+            ordered_positions = []
+            break
+        ordered_positions.append(position)
+        next_index = position + 1
+    order_invalid = bool(ordered_expected) and len(ordered_positions) != len(ordered_expected)
+    raw_exact_counts = case.get("exact_call_counts")
+    exact_counts = raw_exact_counts if isinstance(raw_exact_counts, dict) else {}
+    exact_call_count_mismatches = {
+        str(tool): {"expected": int(expected_count), "actual": called.count(str(tool))}
+        for tool, expected_count in exact_counts.items()
+        if called.count(str(tool)) != int(expected_count)
+    }
     failed_calls = [item["tool"] for item in evidence.mcp_calls if not item["ok"]]
     expected_skill = str(case.get("expected_skill") or "")
     skill_missing = expected_skill_read and expected_skill not in evidence.skill_reads
@@ -421,6 +440,8 @@ def grade_case(case: JsonDict, evidence: Evidence, expected_skill_read: bool) ->
         not evidence.provider_error
         and not missing
         and not forbidden
+        and not order_invalid
+        and not exact_call_count_mismatches
         and not failed_calls
         and not evidence.function_calls
         and not skill_missing
@@ -435,6 +456,9 @@ def grade_case(case: JsonDict, evidence: Evidence, expected_skill_read: bool) ->
         "mcp_calls": evidence.mcp_calls,
         "missing_expected_tools": missing,
         "forbidden_tools": forbidden,
+        "ordered_expected_tools": ordered_expected,
+        "tool_order_invalid": order_invalid,
+        "exact_call_count_mismatches": exact_call_count_mismatches,
         "failed_mcp_calls": failed_calls,
         "function_calls": evidence.function_calls,
         "skill_read_missing": skill_missing,

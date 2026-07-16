@@ -20,8 +20,8 @@ python scripts/run_eval_suite.py --mode mock --skills default --out reports/defa
 python scripts/compare_skill_runs.py reports/baseline/results.json reports/default/results.json --out reports/skill_delta.md
 python scripts/mcp_smoke.py --mock
 python scripts/validate_skills.py
-python scripts/generate_skills_lock.py --version 0.2.0
-python scripts/build_installable_skills.py --version 0.2.0
+python scripts/generate_skills_lock.py --version 0.2.1
+python scripts/build_installable_skills.py --version 0.2.1
 python scripts/run_codex_evals.py --out reports/codex-native-final
 ROUTE_MCP_ACCESS_TOKEN='<test-only-key>' python scripts/run_remote_mcp_evals.py \
   --base-url http://127.0.0.1:8002 \

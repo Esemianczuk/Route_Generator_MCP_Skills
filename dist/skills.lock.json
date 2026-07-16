@@ -1,8 +1,8 @@
 {
   "lock_version": 1,
-  "bundle_version": "0.2.0",
+  "bundle_version": "0.2.1",
   "repo": "Route_Generator_MCP_Skills",
-  "repo_commit": "ca846e245b0dee49fdd6c4c5c0005658034e4d8e",
+  "repo_commit": "04d8ea17dce37203e6c6a3fa6a582f63bff6d6ba",
   "formats": [
     "agentskills.io",
     "codex-local-skills",
@@ -84,50 +84,53 @@
     },
     {
       "name": "route-generator-core",
-      "sha256": "b2a81d2aad98c9d45d81681f1c03e5332d580ee7c15795516e55d3afbfe567b7",
+      "sha256": "2c1f26903d24a9fba993bd0cd5c70ab7e05c75fc6efcd41e3e46ac58bd8bfa5d",
       "files": {
-        "SKILL.md": "dcab036f756d6e426a27b343fc83c6110c0c81d17f5936ecbc350800fc35de45",
+        "SKILL.md": "c4073955739640f33366c9068b69f38821fc6d01f62987e2f7de8643028bc07a",
         "agents/openai.yaml": "7af650b9093c8aa842bff3b6da902408a071f92b12d5f168dced57abce24ad3e",
-        "references/route-tools.md": "3a85c5d965867dd9111fd2e61723bc63c9048c9d0d0ce4304c97b6d404298b8d"
+        "references/route-tools.md": "80f3e1ced9a18a712c38f50ae41c846dfc6bca06686774dd32667a1322d62b51"
       },
       "tool_dependencies": [
         "route.generate_multi_point_route",
         "route.generate_named_road_route",
         "route.generate_routes",
         "route.geocode_locations",
+        "route.plan_ingredient_options",
         "route.summarize_route",
         "route.tool_index"
       ]
     },
     {
       "name": "route-ingredient-planning",
-      "sha256": "2bcdbeab1c078a8f96ed96f9f79aa5bfb7b7adfe28ac162ed95e54717647ab15",
+      "sha256": "8f5e83421cf64821fa17e3f6cf9ad98f14e2e431fe167f865b9ca82411f0ea22",
       "files": {
-        "SKILL.md": "ad144dc583cb9fbf54102c8bd96fd3330459caecfad71dede8a4476750748fca",
+        "SKILL.md": "10c0b4451015a6217f80c37a46776eaa8dd60707576c0068ca490970b94ece98",
         "agents/openai.yaml": "526b4054167081b9feeb96598d0d0ad476bc3b8cb5c935e7dd51edf04051237c",
-        "references/agent-recipes.md": "cc356394f6bb91843cb0b72cada72fbdf9391775fd73219839e9ee974d17c21c"
+        "references/agent-recipes.md": "26b75c6d35c08f627af71cafa525020047d8b9327eb60d1df76f5300cd26640f"
       },
       "tool_dependencies": [
+        "route.add_poi_stop",
         "route.generate_multi_point_route",
         "route.generate_named_road_route",
         "route.geocode_locations",
         "route.plan_ingredient_options",
         "route.plan_poi_stops",
-        "route.plan_water_stops",
-        "route.search_cached_pois"
+        "route.plan_water_stops"
       ]
     },
     {
       "name": "route-poi-stops",
-      "sha256": "35a3c26221a5c05885159afaba339b68a12e58f8a2795f438a61377949dc1006",
+      "sha256": "de7a008d9b102d62451ba0e318b886e3240d37fb6ff23d001e13967dba964509",
       "files": {
-        "SKILL.md": "a8a15bd59140c26dc607a8cd7a5b75819a9ee8a1b958add31a0e55b71a3da652",
+        "SKILL.md": "af0901134931677576971ba68e3ebee36261bdfc8c3a45e3cb00d1c0119758e2",
         "agents/openai.yaml": "a443531c43d720d1f28a75668f77073c8b8545d410662b1123090b8524ace468"
       },
       "tool_dependencies": [
         "route.add_poi_stop",
         "route.generate_loop",
+        "route.generate_multi_point_route",
         "route.generate_routes",
+        "route.plan_ingredient_options",
         "route.plan_poi_stops",
         "route.plan_water_stops",
         "route.search_cached_pois",
@@ -165,7 +168,7 @@
   ],
   "catalog": {
     "repo": "Route_Generator_MCP_Skills",
-    "commit": "ca846e2",
+    "commit": "04d8ea1",
     "skill_count": 10,
     "skills": [
       {
@@ -240,5 +243,5 @@
       }
     ]
   },
-  "bundle_sha256": "3c550a8d07321f80b344290d6fa36a04151940088ca4dc5bf6d4cd3a630cb916"
+  "bundle_sha256": "3ef24c98f2993de531c5e4b2a19df12581f1405f15f1c712db092d453778c7ee"
 }

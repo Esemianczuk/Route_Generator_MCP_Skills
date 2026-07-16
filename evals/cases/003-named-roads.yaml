@@ -1,2 +1,1 @@
-{"id":"003-named-roads","expected_skill":"route-ingredient-planning","prompt":"Create a hilly route that uses Blue Mound Road and County Road F where possible.","must_call":["route.plan_ingredient_options","route.generate_named_road_route"],"must_not_call":[]}
-
+{"id":"003-named-roads","expected_skill":"route-ingredient-planning","prompt":"Create a hilly route that uses Blue Mound Road and County Road F where possible.","must_call":["route.plan_ingredient_options","route.generate_multi_point_route"],"must_call_in_order":["route.plan_ingredient_options","route.generate_multi_point_route"],"exact_call_counts":{"route.plan_ingredient_options":1,"route.generate_multi_point_route":1},"must_not_call":["route.generate_routes","route.generate_named_road_route"]}

@@ -17,25 +17,32 @@ Prefer an explicit ingredient plan before trying a large generation.
 
 ## Workflow
 
-1. Resolve anchors and requested road/POI ingredients.
-2. Choose the narrow dedicated path before the generic planner. Repeated fuel cadence alone uses `route.geocode_locations` -> `route.search_cached_pois` (or `route.plan_poi_stops` when route progress already exists) -> `route.generate_multi_point_route`; repeated water cadence uses the dedicated water planner. Call `route.plan_ingredient_options` for named-road ingredients, mixed POI categories, exclusions combined with mandatory anchors, or genuinely unclear ordering. A paved-only constraint does not by itself turn a fuel-cadence request into the generic path.
-3. Use local cached POI planners before live Overpass.
-4. Generate with `route.generate_named_road_route` or `route.generate_multi_point_route` once the skeleton is feasible.
-5. Report included, partial, missed, and substituted ingredients.
+1. Resolve named start/end anchors with `route.geocode_locations`.
+2. For a brand-new route with any mandatory support stop, cadence, named road, or mixed ingredient constraint, call `route.plan_ingredient_options` before generation.
+3. Use the planner's recommended pack when the user delegated the choice. The planner may rerank its sidecar packs with cached shortest-path feasibility checks before choosing it. If the planner reports a meaningful compromise, network-feasibility risk, or no executable pack, explain it before generating.
+4. Copy `recommended_next_call.arguments` into exactly one `route.generate_multi_point_route` call. Those arguments may contain bounded `fallback_packs`; they are for transparent server-side recovery and must not be called manually by the model. Do not synthesize a second waypoint plan, generate a baseline route first, or add the planned stops one at a time.
+5. Report the selected ingredients and the returned `ingredient_verification`, including partial, missed, substituted, and co-satisfied roles.
 
 Use these exact tool paths; do not invent intermediate planner names:
 
-- Water cadence between named endpoints: `route.geocode_locations` -> `route.plan_water_stops` -> `route.generate_multi_point_route`.
-- Fuel cadence on a new point-to-point route: `route.geocode_locations` -> `route.search_cached_pois` -> `route.generate_multi_point_route`. Use `route.plan_poi_stops` instead only when an existing route already supplies route-progress positions. Do not replace this path with `route.plan_ingredient_options` merely because the route also has a paved/surface constraint.
-- Required named roads: `route.plan_ingredient_options` -> `route.generate_named_road_route`.
-- Mixed named roads, POIs, exclusions, and segment constraints: `route.plan_ingredient_options` first, then use the generation call returned by that plan.
+- New loop or point-to-point route with water, fuel, cafes, restrooms, parks, parking, named roads, or mixed mandatory ingredients: `route.geocode_locations` when needed -> `route.plan_ingredient_options` -> exactly one `route.generate_multi_point_route`.
+- Existing stored route that needs support stops planned along its current corridor: `route.plan_water_stops` or `route.plan_poi_stops`.
+- Existing stored route that needs one confirmed stop inserted: search the local cache, then use `route.add_poi_stop`.
+- Required named roads without other mandatory POIs may use `route.plan_ingredient_options` followed by the returned generation call. Use `route.generate_named_road_route` only when the planner explicitly recommends that specialized path.
 
-`route.plan_ingredient_options` is not a substitute for `route.plan_water_stops` when the request explicitly asks for water at a cadence. The water planner supplies water-specific ranked anchors for multipoint generation.
+`route.plan_water_stops` and `route.plan_poi_stops` require an existing stored route. They are follow-up tools, not pre-generation planners.
+
+For requests such as "three water stops, one of them a park", encode the requirements together in `poi_needs`. One selected stop may co-satisfy multiple roles. Do not search water and parks independently and hope the results line up.
+
+Do not use live Overpass before the ingredient planner. The planner owns cache-first candidate selection and reports whether a fallback is needed.
 
 Use [references/agent-recipes.md](references/agent-recipes.md) for multi-stop and desired-road flows.
 
 ## Postconditions
 
 - The plan reports resolved, partial, substituted, and missing ingredients.
-- Mandatory anchors are ordered before route generation.
+- Mandatory anchors are ordered before route generation and have a stable ingredient pack id.
 - Generation starts only when the returned plan is feasible or the user accepts a stated compromise.
+- A new-route request performs one expensive route-generation call after planning.
+- The MCP tool may make one bounded internal fallback attempt for a clearly infeasible primary pack, but the model still makes exactly one external generation call.
+- The final response identifies any co-satisfied role, such as which water stop is also the park.

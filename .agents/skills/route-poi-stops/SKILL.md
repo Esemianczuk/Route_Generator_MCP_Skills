@@ -11,7 +11,7 @@ Use to find, rank, plan, add, or visualize water, fuel, cafe, restroom, parking,
 
 ## Do not use when
 
-Do not use merely because a place name appears as a route endpoint; use the core generation or ingredient-planning skill unless it is a requested stop/anchor search.
+Do not use merely because a place name appears as a route endpoint. For a brand-new route that must pass through one or more support POIs, use route-ingredient-planning first.
 
 Use offline/local cached POI tools first. Live Overpass is a fallback, not the default.
 
@@ -22,14 +22,16 @@ Use offline/local cached POI tools first. Live Overpass is a fallback, not the d
 - Coffee, fuel, restrooms, parks, repairs, scenic, shelters: `route.search_cached_pois`, then `route.plan_poi_stops`.
 - Specialized raw OSM tags or cache shortfalls: `route.search_pois`.
 
+The planning tools above are for existing stored routes. For a new route with required water, fuel, cafe, restroom, park, parking, or mixed POI ingredients, call `route.plan_ingredient_options`; then copy its `recommended_next_call.arguments` into one `route.generate_multi_point_route` call.
+
 When a user says "choose for me" or "best", pick the best candidate and add it. Otherwise present numbered options.
 
 For a requested loop that should start at ranked non-private parking, use `route.search_parking_anchors` and then call `route.generate_routes` with `generation_mode: "loop"` and the selected parking coordinates as `start`. There is no `route.generate_loop` tool; never invent a specialized loop tool name.
 
-For "your choice", "best", or "nearest", call `route.search_cached_pois` and then `route.add_poi_stop` for the selected candidate in the same turn. A search result is not an added stop. Use `route.search_parking_anchors` for ranked non-private starts, and `route.plan_water_stops` or `route.plan_poi_stops` for repeated stop cadence.
+For an existing route and "your choice", "best", or "nearest", call `route.search_cached_pois` and then `route.add_poi_stop` for the selected candidate in the same turn. A search result is not an added stop. Use `route.search_parking_anchors` for ranked non-private starts, and `route.plan_water_stops` or `route.plan_poi_stops` for repeated stop cadence on the current route.
 
 ## Postconditions
 
 - Candidates include route-relative distance/position and ranking rationale.
 - A POI is never described as added until the add/edit result confirms it.
-- Mandatory stop cadence uses an ingredient or multi-point plan rather than disconnected searches.
+- Mandatory stop cadence on a new route uses one ingredient plan and one multi-point generation rather than disconnected searches.
