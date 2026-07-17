@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.5
+
+- Keeps multi-point compatibility aliases simple enough for provider-native structured calls.
+- Treats same-pack distance calibration as a bounded server-side recovery, never a second model tool call.
+- Extends the Madison water-stop eval to forbid parking-search detours after planning.
+
 ## 0.2.4
 
 - Defaults repeated mandatory stops on loops to even interior distance slots when the user did not specify cadence.

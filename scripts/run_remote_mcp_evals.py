@@ -14,7 +14,7 @@ from mcp.client.streamable_http import streamable_http_client
 
 
 async def _probe(label: str, url: str, token: str) -> dict[str, Any]:
-    headers = {"Authorization": f"Bearer {token}", "User-Agent": "route-skill-remote-mcp-eval/0.2.4"}
+    headers = {"Authorization": f"Bearer {token}", "User-Agent": "route-skill-remote-mcp-eval/0.2.5"}
     async with httpx.AsyncClient(headers=headers, timeout=30, follow_redirects=False) as client:
         async with streamable_http_client(url, http_client=client) as (read, write, _):
             async with ClientSession(read, write) as session:
