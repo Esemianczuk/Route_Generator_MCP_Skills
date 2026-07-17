@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.4
+
+- Defaults repeated mandatory stops on loops to even interior distance slots when the user did not specify cadence.
+- Requires planner arguments to be copied verbatim, forbids ordinary-task `route.tool_index` discovery, and keeps hard-infeasible packs out of recommendations.
+- Documents compatibility handling for common multi-point aliases without turning them into extra generation attempts.
+
 ## 0.2.3
 
 - Treats a geocoded area center as the anchor for area-only ingredient loops so repeated stops can be distributed and network-checked before generation.

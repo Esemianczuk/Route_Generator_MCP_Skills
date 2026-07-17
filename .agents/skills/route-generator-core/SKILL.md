@@ -24,7 +24,7 @@ Start by preserving session state. Use the current session id for every route to
 5. For follow-ups like "tell me about it", call `route.summarize_route`; do not generate again.
 6. Mention images only when the latest tool result returned image artifacts.
 
-For a catalog/help request, use the compatibility tool `route.tool_index` without generating a route.
+For a catalog/help request, use the compatibility tool `route.tool_index` without generating a route. Do not call it during an ordinary route task; the provider already supplied the live tool catalog.
 
 Read [references/route-tools.md](references/route-tools.md) when tool choice is unclear.
 

@@ -12,7 +12,7 @@ from skill_catalog import repo_root
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--version", default="0.2.3")
+    parser.add_argument("--version", default="0.2.4")
     parser.add_argument("--out", default="dist")
     args = parser.parse_args()
     root = repo_root()
