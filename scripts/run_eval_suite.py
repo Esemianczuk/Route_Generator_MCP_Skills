@@ -29,6 +29,10 @@ def plan_tools(prompt: str, skills: str) -> list[str]:
     asks_import = "import" in text or "gpx" in text or "ridewithgps" in text
     asks_troubleshooting = any(word in text for word in ["bridge returned", "non-json", "404", "failed", "error"])
     asks_edit_existing = any(word in text for word in ["avoid", "don't end up", "do not end up", "reroute around", "add another", "leg to that tour"])
+    asks_new_route = any(word in text for word in ["make", "generate", "create"]) and "route" in text
+    asks_named_roads = any(word in text for word in ["specific road", "named road", "blue mound", "county road", "hwy", "highway"])
+    asks_water_stops = "water" in text and ("stop" in text or "refill" in text)
+    asks_fuel_stops = any(word in text for word in ["gas", "fuel"]) and any(word in text for word in ["stop", "every", "route"])
     if "list" in text and "tool" in text:
         tools.append("route.tool_index")
     if asks_import:
@@ -36,12 +40,14 @@ def plan_tools(prompt: str, skills: str) -> list[str]:
     if any(word in text for word in ["geocode", "from ", " to ", "near ", "in "]):
         if any(place in text for place in ["madison", "port washington", "brookfield", "sturgis", "wisconsin"]):
             tools.append("route.geocode_locations")
-    if any(word in text for word in ["specific road", "named road", "blue mound", "county road", "hwy", "highway"]):
+    if skilled and asks_new_route and (asks_named_roads or asks_water_stops or asks_fuel_stops):
+        tools.extend(["route.plan_ingredient_options", "route.generate_multi_point_route"])
+    elif asks_named_roads:
         tools.append("route.plan_ingredient_options" if skilled else "route.generate_routes")
-        tools.append("route.generate_named_road_route")
-    elif "water" in text and ("stop" in text or "refill" in text):
+        tools.append("route.generate_multi_point_route" if skilled else "route.generate_named_road_route")
+    elif asks_water_stops:
         tools.append("route.plan_water_stops" if skilled else "route.search_pois")
-        if "route" in text or "from " in text:
+        if not skilled and ("route" in text or "from " in text):
             tools.append("route.generate_multi_point_route")
     elif any(word in text for word in ["coffee", "gas", "fuel", "parking", "cafe", "restroom"]):
         if "parking" in text:

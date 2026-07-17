@@ -16,10 +16,10 @@
 
 ## Stops Every N Miles
 
-1. Generate or select a baseline route.
-2. Use cached POI planning (`plan_water_stops`, `plan_poi_stops`, or `search_parking_anchors`) with spacing and route session.
-3. Prefer multi-point route generation when stops are mandatory; use add-stop edits when stops are optional or close.
-4. Return stop names, mile markers, warnings, and a map only if requested or if choices need review.
+1. For a brand-new route with mandatory stops, geocode named anchors and call `route.plan_ingredient_options` before any generation.
+2. Copy its `recommended_next_call.arguments` into exactly one `route.generate_multi_point_route` call. Never generate a baseline route first; bounded fallback packs execute inside that one tool call.
+3. For an already-stored route, use `route.plan_water_stops` or `route.plan_poi_stops`; use add-stop edits only after the user confirms or delegates a candidate.
+4. Return verified stop names, mile markers, warnings, and the default 3D profile with climb callouts and POI markers. Render another view only when requested or when the default artifact is missing.
 
 ## Weather Decision
 
@@ -38,4 +38,3 @@
 ## Troubleshooting
 
 If the tool result conflicts with the text, trust tool artifacts and state. If route context is missing, call a session/list/summarize tool before asking the user to paste ids.
-

@@ -83,7 +83,7 @@ def build_lock(root: Path, version: str) -> dict[str, Any]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Create the deterministic route-skill lock file.")
-    parser.add_argument("--version", default="0.2.0")
+    parser.add_argument("--version", default="0.2.2")
     parser.add_argument("--out", type=Path, default=Path("dist/skills.lock.json"))
     args = parser.parse_args()
     root = repo_root()

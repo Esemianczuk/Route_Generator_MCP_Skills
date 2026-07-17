@@ -1,8 +1,8 @@
 {
   "lock_version": 1,
-  "bundle_version": "0.2.1",
+  "bundle_version": "0.2.2",
   "repo": "Route_Generator_MCP_Skills",
-  "repo_commit": "04d8ea17dce37203e6c6a3fa6a582f63bff6d6ba",
+  "repo_commit": "549f4a1af6b8b3bd180f40945e678f1618d5bbfd",
   "formats": [
     "agentskills.io",
     "codex-local-skills",
@@ -84,9 +84,9 @@
     },
     {
       "name": "route-generator-core",
-      "sha256": "2c1f26903d24a9fba993bd0cd5c70ab7e05c75fc6efcd41e3e46ac58bd8bfa5d",
+      "sha256": "77ac08f5aea082e6a6652ccbab1436738f567e85340a426bd14f613aa115a17b",
       "files": {
-        "SKILL.md": "c4073955739640f33366c9068b69f38821fc6d01f62987e2f7de8643028bc07a",
+        "SKILL.md": "bd87c4d2cabe7d0dce66a44755e49a2f98582d5d5fda7eaf228aa0f98ff338e0",
         "agents/openai.yaml": "7af650b9093c8aa842bff3b6da902408a071f92b12d5f168dced57abce24ad3e",
         "references/route-tools.md": "80f3e1ced9a18a712c38f50ae41c846dfc6bca06686774dd32667a1322d62b51"
       },
@@ -102,9 +102,9 @@
     },
     {
       "name": "route-ingredient-planning",
-      "sha256": "8f5e83421cf64821fa17e3f6cf9ad98f14e2e431fe167f865b9ca82411f0ea22",
+      "sha256": "c72d05d66f981fc6ce1ba5c3a665741ebf7c0a5fd8bd89f5867668079d55c03a",
       "files": {
-        "SKILL.md": "10c0b4451015a6217f80c37a46776eaa8dd60707576c0068ca490970b94ece98",
+        "SKILL.md": "b99050f4b658c0595ab2cc7ddd0b6e042f2822a99d6da7a72b8974e91e24cc22",
         "agents/openai.yaml": "526b4054167081b9feeb96598d0d0ad476bc3b8cb5c935e7dd51edf04051237c",
         "references/agent-recipes.md": "26b75c6d35c08f627af71cafa525020047d8b9327eb60d1df76f5300cd26640f"
       },
@@ -168,7 +168,7 @@
   ],
   "catalog": {
     "repo": "Route_Generator_MCP_Skills",
-    "commit": "04d8ea1",
+    "commit": "549f4a1",
     "skill_count": 10,
     "skills": [
       {
@@ -243,5 +243,5 @@
       }
     ]
   },
-  "bundle_sha256": "3ef24c98f2993de531c5e4b2a19df12581f1405f15f1c712db092d453778c7ee"
+  "bundle_sha256": "0191348e797e7f124c5ccba87fab3cdd1746947d3e9365c89f3368094b8effd3"
 }

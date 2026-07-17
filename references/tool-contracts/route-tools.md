@@ -8,8 +8,8 @@
 
 ## Generation Families
 
-- `route.generate_routes`: best-in-area, loop, or point-to-point generation when the user asks for a new route.
-- `route.generate_multi_point_route`: ordered anchors, tour legs, water/fuel stop every N miles, or multi-criteria point-to-point tours.
+- `route.generate_routes`: best-in-area, loop, or point-to-point generation only when a new route has no mandatory POIs/stops/ingredients. Never use it after `route.plan_ingredient_options`.
+- `route.generate_multi_point_route`: ordered anchors, tour legs, water/fuel stop every N miles, or multi-criteria point-to-point tours. For an ingredient plan, make exactly one external call with the planner-provided arguments; the server owns bounded fallback attempts and returns one final stored route.
 - `route.generate_named_road_route`: desired road-name ingredients. Resolve and report road confidence first.
 - `route.plan_ingredient_options`: pre-generation ingredient ordering and feasibility planning when many roads/POIs/stops are requested.
 
@@ -30,7 +30,8 @@ Only use `route.search_pois` when the local cached tool reports shortfall, unava
 - `route.render_terrain_image`: terrain cutout / 3D landscape / route draped on ground.
 - `route.render_weather_image`: weather cards, weather maps, or weather 3D profile views.
 
+Ingredient-planned multi-point generation returns a default 3D profile image with regular climb callouts and verified POI markers. Do not issue a second render call unless the user requests a different view or that artifact is missing.
+
 ## Cycling Physics
 
 Use `route.evaluate_cycling_performance` for cycling ETA, speed, FTP, bike/tire setup, hydration, sweat, sodium, calories, carbs, handling, and where-the-rider-will-be questions. Do not estimate these directly when a route is stored.
-

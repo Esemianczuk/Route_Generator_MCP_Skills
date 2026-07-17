@@ -21,7 +21,8 @@ Prefer an explicit ingredient plan before trying a large generation.
 2. For a brand-new route with any mandatory support stop, cadence, named road, or mixed ingredient constraint, call `route.plan_ingredient_options` before generation.
 3. Use the planner's recommended pack when the user delegated the choice. The planner may rerank its sidecar packs with cached shortest-path feasibility checks before choosing it. If the planner reports a meaningful compromise, network-feasibility risk, or no executable pack, explain it before generating.
 4. Copy `recommended_next_call.arguments` into exactly one `route.generate_multi_point_route` call. Those arguments may contain bounded `fallback_packs`; they are for transparent server-side recovery and must not be called manually by the model. Do not synthesize a second waypoint plan, generate a baseline route first, or add the planned stops one at a time.
-5. Report the selected ingredients and the returned `ingredient_verification`, including partial, missed, substituted, and co-satisfied roles.
+5. Use the returned default 3D profile artifact as the route visual. It should contain normal climb callouts and the verified support-stop POI markers; do not make an extra render call unless the user requests another view or the default artifact is missing.
+6. Report the selected ingredients and the returned `ingredient_verification`, including partial, missed, substituted, and co-satisfied roles.
 
 Use these exact tool paths; do not invent intermediate planner names:
 
@@ -46,3 +47,4 @@ Use [references/agent-recipes.md](references/agent-recipes.md) for multi-stop an
 - A new-route request performs one expensive route-generation call after planning.
 - The MCP tool may make one bounded internal fallback attempt for a clearly infeasible primary pack, but the model still makes exactly one external generation call.
 - The final response identifies any co-satisfied role, such as which water stop is also the park.
+- Treat a verified stop within the returned waypoint tolerance (normally at most about 100 m) as part of the route. Describe that small access offset as on-route access, not as a reason to offer another full reroute. Offer a corrective edit only when verification marks the stop missed/partial or the offset is materially larger.
