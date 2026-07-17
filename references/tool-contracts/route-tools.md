@@ -9,9 +9,9 @@
 ## Generation Families
 
 - `route.generate_routes`: best-in-area, loop, or point-to-point generation only when a new route has no mandatory POIs/stops/ingredients. Never use it after `route.plan_ingredient_options`.
-- `route.generate_multi_point_route`: ordered anchors, tour legs, water/fuel stop every N miles, or multi-criteria point-to-point tours. For an ingredient plan, make exactly one external call with the planner-provided arguments; the server owns bounded fallback attempts and returns one final stored route.
+- `route.generate_multi_point_route`: ordered anchors, tour legs, water/fuel stop every N miles, or multi-criteria point-to-point tours. For an ingredient plan, call it exactly once only when `recommended_next_call` is non-null and `external_generation_call_budget` is one. Copy the planner-provided arguments exactly; the server owns bounded fallback attempts and returns one final stored route.
 - `route.generate_named_road_route`: desired road-name ingredients. Resolve and report road confidence first.
-- `route.plan_ingredient_options`: pre-generation ingredient ordering and feasibility planning when many roads/POIs/stops are requested.
+- `route.plan_ingredient_options`: pre-generation ingredient ordering and feasibility planning when many roads/POIs/stops are requested. Area-only loops use the geocoded area center as the planning start. A null recommendation or zero generation budget is a hard stop; candidates and option packs are diagnostic, not model-constructible generation arguments.
 
 ## Local Cached POIs First
 

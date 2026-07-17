@@ -16,8 +16,8 @@
 
 ## Stops Every N Miles
 
-1. For a brand-new route with mandatory stops, geocode named anchors and call `route.plan_ingredient_options` before any generation.
-2. Copy its `recommended_next_call.arguments` into exactly one `route.generate_multi_point_route` call. Never generate a baseline route first; bounded fallback packs execute inside that one tool call.
+1. For a brand-new route with mandatory stops, geocode named anchors and call `route.plan_ingredient_options` before any generation. For an area-only loop, use the geocoded area center as the planning start.
+2. Continue only when the planner returns `recommended_next_call` with an external generation budget of one, then copy its arguments into exactly one `route.generate_multi_point_route` call. A null call or zero budget forbids generation; never build from candidate packs, generate a baseline first, or manually run bounded fallback packs.
 3. For an already-stored route, use `route.plan_water_stops` or `route.plan_poi_stops`; use add-stop edits only after the user confirms or delegates a candidate.
 4. Return verified stop names, mile markers, warnings, and the default 3D profile with climb callouts and POI markers. Render another view only when requested or when the default artifact is missing.
 

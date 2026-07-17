@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.3
+
+- Treats a geocoded area center as the anchor for area-only ingredient loops so repeated stops can be distributed and network-checked before generation.
+- Makes a null planner recommendation or zero generation budget an explicit hard stop instead of permission to synthesize waypoints or retry generation.
+- Adds a semantic eval for a 100-mile Madison-area route with three water stops and exactly one multi-point generation call.
+
 ## 0.2.1
 
 - Makes pre-generation ingredient planning mandatory for new routes with required POIs, stop cadence, named roads, or mixed ingredients.

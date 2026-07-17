@@ -37,7 +37,7 @@ def plan_tools(prompt: str, skills: str) -> list[str]:
         tools.append("route.tool_index")
     if asks_import:
         tools.append("route.import_route")
-    if any(word in text for word in ["geocode", "from ", " to ", "near ", "in "]):
+    if any(word in text for word in ["geocode", "from ", " to ", "near ", "around ", "in "]):
         if any(place in text for place in ["madison", "port washington", "brookfield", "sturgis", "wisconsin"]):
             tools.append("route.geocode_locations")
     if skilled and asks_new_route and (asks_named_roads or asks_water_stops or asks_fuel_stops):

@@ -38,6 +38,7 @@ DEFAULT_ORDER = [
     "018-undo-redo",
     "003-named-roads",
     "004-water-stops",
+    "021-area-loop-water-stops",
     "005-fuel-stops",
     "006-parking-anchor",
     "008-weather-headwind",
@@ -317,8 +318,8 @@ def _load_cases(root: Path) -> dict[str, JsonDict]:
     for path in sorted((root / "evals" / "cases").glob("*.yaml")):
         case = json.loads(path.read_text(encoding="utf-8"))
         cases[str(case["id"])] = case
-    if len(cases) != 20:
-        raise SystemExit(f"Expected exactly 20 eval cases, found {len(cases)}.")
+    if len(cases) != 21:
+        raise SystemExit(f"Expected exactly 21 eval cases, found {len(cases)}.")
     if set(cases) != set(DEFAULT_ORDER):
         raise SystemExit("The checked-in cases do not match the certified 20-case execution schedule.")
     return cases

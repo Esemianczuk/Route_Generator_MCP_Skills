@@ -19,9 +19,10 @@ Trust backend state and tool results over model text.
 
 1. Inspect the latest tool trace and route session.
 2. Confirm whether the requested route/artifact/POI/edit actually exists.
-3. Retry only with corrected arguments; do not repeat the same failing call.
-4. If generation bridge is unavailable, report the bridge issue and keep the session ready for retry.
-5. If the model produced duplicate or wrong visuals, use a single explicit render call with the correct visual family.
+3. If a generation call followed an ingredient plan, compare it with `recommended_next_call.arguments` and `generation_contract` first. A null recommendation or zero external generation budget means the generation call was invalid; correct the planner input instead of guessing waypoints or retrying generation.
+4. Retry only with an evidence-backed argument correction from the returned validation detail. Do not guess that a workspace id, session id, or waypoint caused an HTTP status-only error, and do not repeat the same failing call.
+5. If generation bridge is unavailable, report the bridge issue and keep the session ready for retry.
+6. If the model produced duplicate or wrong visuals, use a single explicit render call with the correct visual family.
 
 Redact provider keys and avoid echoing secret-bearing URLs.
 

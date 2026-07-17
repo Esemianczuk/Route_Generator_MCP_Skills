@@ -14,7 +14,7 @@ from mcp.client.streamable_http import streamable_http_client
 
 
 async def _probe(label: str, url: str, token: str) -> dict[str, Any]:
-    headers = {"Authorization": f"Bearer {token}", "User-Agent": "route-skill-remote-mcp-eval/0.2.0"}
+    headers = {"Authorization": f"Bearer {token}", "User-Agent": "route-skill-remote-mcp-eval/0.2.3"}
     async with httpx.AsyncClient(headers=headers, timeout=30, follow_redirects=False) as client:
         async with streamable_http_client(url, http_client=client) as (read, write, _):
             async with ClientSession(read, write) as session:
@@ -47,8 +47,8 @@ def _load_cases(root: Path) -> dict[str, dict[str, Any]]:
     for path in sorted((root / "evals" / "cases").glob("*.yaml")):
         case = json.loads(path.read_text(encoding="utf-8"))
         cases[str(case["id"])] = case
-    if len(cases) != 20:
-        raise SystemExit(f"Expected exactly 20 checked-in eval cases, found {len(cases)}.")
+    if len(cases) != 21:
+        raise SystemExit(f"Expected exactly 21 checked-in eval cases, found {len(cases)}.")
     return cases
 
 
@@ -105,7 +105,7 @@ def _bind_plans_to_remote_catalogs(
 def main() -> None:
     parser = argparse.ArgumentParser(
         description=(
-            "Bind all 20 native Codex skill/tool plans to the real non-overlapping catalogs exposed by both canonical "
+            "Bind all 21 native Codex skill/tool plans to the real non-overlapping catalogs exposed by both canonical "
             "MCP servers. This certifies remote executability of the plans; stateful behavior remains a separate API gate."
         )
     )
@@ -132,7 +132,7 @@ def main() -> None:
         "servers": servers,
         "cases": cases,
     }
-    payload["ok"] = payload["case_count"] == 20 and payload["pass_count"] == 20
+    payload["ok"] = payload["case_count"] == 21 and payload["pass_count"] == 21
     output_path = (root / args.out).resolve()
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
