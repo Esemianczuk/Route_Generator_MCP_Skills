@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.0
+
+- Replaces large planner-argument copying in provider-native MCP with a compact, owner-bound `ingredient_plan_ref` that the server hydrates into the canonical waypoint plan.
+- Allows up to two bounded same-pack distance calibrations (three internal attempts total) while preserving exactly one model-visible generation call and one final stored route.
+
 ## 0.2.9
 
 - Tightens the default distance tolerance for ingredient-planned routes from 10% to 5% while keeping distance-only correction inside one external MCP generation call.

@@ -1,8 +1,8 @@
 {
   "lock_version": 1,
-  "bundle_version": "0.2.9",
+  "bundle_version": "0.3.0",
   "repo": "Route_Generator_MCP_Skills",
-  "repo_commit": "49ce0b7f9d8c11e45c1b54eab63880d59daefacf",
+  "repo_commit": "be53fd7c9d19a02d1dbc5c561680d533474d1e22",
   "formats": [
     "agentskills.io",
     "codex-local-skills",
@@ -102,9 +102,9 @@
     },
     {
       "name": "route-ingredient-planning",
-      "sha256": "fa68f7423e6674f49acd1d7b0804da4ca59e8aec4c8cfd77bf74d522b4b52750",
+      "sha256": "799e5a89ad222a380065414128b18460720a5192be16d13639f6cb32e57e721b",
       "files": {
-        "SKILL.md": "64f0556a59b995c3e18ec4f6f58679a484123b5f7a166ae972af6ec948f98962",
+        "SKILL.md": "87dec5971b168dbcbf04c219ccb1ab0add4f863aece563b3c192ac56f984a87e",
         "agents/openai.yaml": "526b4054167081b9feeb96598d0d0ad476bc3b8cb5c935e7dd51edf04051237c",
         "references/agent-recipes.md": "c3a673b95e5d2689267c2ee3bb12f23f3cc13a22e9a41db9d9d5b417390b2cc3"
       },
@@ -168,7 +168,7 @@
   ],
   "catalog": {
     "repo": "Route_Generator_MCP_Skills",
-    "commit": "49ce0b7",
+    "commit": "be53fd7",
     "skill_count": 10,
     "skills": [
       {
@@ -243,5 +243,5 @@
       }
     ]
   },
-  "bundle_sha256": "6973cd3461b6202a5e089594067dfb9219ee6aee200b625f58bbc1c9a1019495"
+  "bundle_sha256": "c2629994532407e84b46779e9cee28360bfeb97a0d8ae488fa74272b3af0d72c"
 }
