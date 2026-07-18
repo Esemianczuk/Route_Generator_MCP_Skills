@@ -5,6 +5,8 @@
 - Always pass the current session id for follow-up requests about "this route", "latest route", "route 2", weather, images, edits, imports, or comparisons.
 - Use route aliases (`R1`, `R2`) or `route_selector: "active"` before asking users for raw route ids.
 - After generation or import, summarize the active route before doing optional follow-ups.
+- Present route/workspace IDs as plain identifiers. They are not files or provider-local assets, so never fabricate `sandbox:`, download, or file links for them.
+- A route with `ingredient_verification.status: verified` and a satisfied distance check is complete. Report its actual distance without offering another tuning pass unless the user explicitly requested tighter precision.
 
 ## Generation Families
 

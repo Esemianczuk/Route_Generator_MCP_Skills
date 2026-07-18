@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.1
+
+- Keeps route/workspace IDs as plain identifiers instead of inventing provider-local `sandbox:` links.
+- Treats a verified route inside the planner's target-distance tolerance as complete and avoids offering an unnecessary distance retry.
+
 ## 0.3.0
 
 - Replaces large planner-argument copying in provider-native MCP with a compact, owner-bound `ingredient_plan_ref` that the server hydrates into the canonical waypoint plan.
