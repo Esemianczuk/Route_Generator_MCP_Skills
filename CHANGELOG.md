@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.2
+
+- Documents bracketed server-side distance calibration so required-stop routes converge instead of oscillating around the requested distance.
+- Treats an exhausted but usable verification-partial route as partial without inviting a second model-driven generation call.
+
 ## 0.3.1
 
 - Keeps route/workspace IDs as plain identifiers instead of inventing provider-local `sandbox:` links.
