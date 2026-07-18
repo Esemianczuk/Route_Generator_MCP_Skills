@@ -29,7 +29,8 @@ def plan_tools(prompt: str, skills: str) -> list[str]:
     asks_import = "import" in text or "gpx" in text or "ridewithgps" in text
     asks_regenerate = "regenerate" in text or "full retry" in text
     asks_troubleshooting = any(word in text for word in ["bridge returned", "non-json", "404", "failed", "error"])
-    asks_edit_existing = any(word in text for word in ["avoid", "don't end up", "do not end up", "reroute around", "add another", "leg to that tour"])
+    asks_reverse = "reverse" in text and any(word in text for word in ["route", "tour", "active", "current"])
+    asks_edit_existing = asks_reverse or any(word in text for word in ["avoid", "don't end up", "do not end up", "reroute around", "add another", "leg to that tour"])
     asks_new_route = any(word in text for word in ["make", "generate", "create", "build"]) and "route" in text
     asks_ordered_anchors = any(
         phrase in text
@@ -110,6 +111,8 @@ def plan_tools(prompt: str, skills: str) -> list[str]:
         tools.append("route.undo_tour")
     if "redo" in text:
         tools.append("route.redo_tour")
+    if asks_reverse:
+        tools.append("route.reverse_route")
     deduped: list[str] = []
     for tool in tools:
         if tool not in deduped:

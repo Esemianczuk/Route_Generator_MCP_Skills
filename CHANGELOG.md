@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.13
+
+- Makes active-tour reversal infer persisted state when identifiers are omitted in a provider-managed chat.
+- Documents the legal reverse fallback for locally composed/imported routes, including lineage, POI-position preservation, and the existing distance-drift safety envelope.
+- Adds a regression that requires one reverse mutation without session polling or replacement generation.
+
 ## 0.3.12
 
 - Makes combined weather-plus-cycling-ETA requests call route weather analysis before cycling performance instead of treating performance output as forecast evidence.

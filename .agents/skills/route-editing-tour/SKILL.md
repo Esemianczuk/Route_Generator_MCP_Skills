@@ -28,7 +28,7 @@ Use these exact mutation paths:
 - Avoid a named road or distance span: `route.analyze_osrm_segments` -> `route.plan_avoidance_edit` -> `route.apply_avoidance_edit`.
 - Add a generated conversational leg: `route.geocode_locations` when the destination is text, then `route.extend_tour`.
 - Merge, split, keep/remove a window, append, or prepend stored routes: `route.edit_tour`.
-- Reverse a route legally: `route.reverse_route`. A successful reverse is a new lineage revision and must remain within the server's distance-drift safety envelope; if it fails that invariant, report the failure and keep the source route active.
+- Reverse a route legally: `route.reverse_route`. Omit identifiers in a provider-managed chat so the tool resolves the persisted active/latest route. Cached engine routes use the engine's legal reverse; locally composed or imported routes rebuild the reversed stored shape through Route Intelligence. Both paths create a lineage revision, preserve attached POIs at reversed route positions, and must remain within the server's distance-drift safety envelope. If that invariant fails, report the failure and keep the source route active.
 - Undo/redo: `route.undo_tour` or `route.redo_tour`.
 
 Do not regenerate the entire route with `route.generate_routes` when a local revision tool can preserve the current route and lineage.
