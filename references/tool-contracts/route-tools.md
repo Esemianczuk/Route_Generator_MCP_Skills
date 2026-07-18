@@ -7,6 +7,7 @@
 - After generation or import, summarize the active route before doing optional follow-ups.
 - Present route/workspace IDs as plain identifiers. They are not files or provider-local assets, so never fabricate `sandbox:`, download, or file links for them.
 - A route with `ingredient_verification.status: verified` and a satisfied distance check is complete. Report its actual distance without offering another tuning pass unless the user explicitly requested tighter precision.
+- Provider-native ingredient-generation results use a compact completion envelope: route metrics, verification and stop offsets, visual artifact metadata, bounded-attempt metrics, and `completion.follow_up_policy`. When `completion.user_request_complete` is true and `retry_recommended` is false, summarize the delivered result without proposing an unsolicited regeneration, distance tune, or stop reroute. Full diagnostics remain available from the direct Route API.
 
 ## Generation Families
 
