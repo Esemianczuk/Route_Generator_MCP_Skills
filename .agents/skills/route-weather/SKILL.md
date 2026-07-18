@@ -18,6 +18,7 @@ Analyze first, render second.
 ## Workflow
 
 1. Call `route.analyze_weather` for any non-trivial weather question.
+   For a combined weather-plus-cycling-ETA request, call it before `route.evaluate_cycling_performance`; the performance tool is not a substitute for route weather evidence.
 2. Preserve activity type, start time, speed, and duration assumptions in the session.
 3. Render the metric the analysis says matters most. Do not render rain when rain is negligible unless the user asks for rain.
 4. Use whole-route visuals unless the user explicitly asks to zoom.

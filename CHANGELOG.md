@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.12
+
+- Makes combined weather-plus-cycling-ETA requests call route weather analysis before cycling performance instead of treating performance output as forecast evidence.
+- Documents supported arrival/departure aliases so provider-native calls avoid a schema-error retry.
+- Adds a regression for an arrival-deadline forecast that requires exactly one weather and one performance call.
+
 ## 0.3.11
 
 - Adds fixed cycling-pace solving and explicit ambient temperature/humidity/wind inputs to route-aware hydration and performance analysis.
