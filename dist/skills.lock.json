@@ -1,8 +1,8 @@
 {
   "lock_version": 1,
-  "bundle_version": "0.3.7",
+  "bundle_version": "0.3.8",
   "repo": "Route_Generator_MCP_Skills",
-  "repo_commit": "5b5625a6b7701ef75b70b7e8e714b5c4205f2639",
+  "repo_commit": "0f406d1cc77005d900259ab5fc11a924a624f89b",
   "formats": [
     "agentskills.io",
     "codex-local-skills",
@@ -65,9 +65,9 @@
     },
     {
       "name": "route-editing-tour",
-      "sha256": "f7a607f0aa7fd8f7894f177198f2d8ee9157881dc02a3b9f38215ba871da8846",
+      "sha256": "bf6eaa21e368c36ad926eec94340f5890b05ce8028ddff116c2a3e2a334e3e52",
       "files": {
-        "SKILL.md": "22ef1e13eda7bf1c4203cf81d0693b7c2ffd5adc4ef7d99f64cd2fec0209e9eb",
+        "SKILL.md": "85c050c037e8c114005b3a25486d5ccc5f4a97b14677882542f651277f24b7b2",
         "agents/openai.yaml": "f8f6d63c548e80491d2a17c35c4736e8b31a637eeed8b7d51690da99f24a8c43"
       },
       "tool_dependencies": [
@@ -77,6 +77,7 @@
         "route.extend_tour",
         "route.generate_routes",
         "route.geocode_locations",
+        "route.get_session",
         "route.plan_avoidance_edit",
         "route.redo_tour",
         "route.reverse_route",
@@ -122,9 +123,9 @@
     },
     {
       "name": "route-poi-stops",
-      "sha256": "44ba1915e3df5a8ab9f115a2fd3aad1789704596fc2bf6e13588ba61783e9759",
+      "sha256": "06ef5442ee7bb6d5d3f4da91d7ce75194a0dba00757613536bab55815fd3e4ce",
       "files": {
-        "SKILL.md": "979b0d2e336a260818406702345c255abe9b4e432001d44fe5b7440ab85b6c93",
+        "SKILL.md": "30f65c1e260643ccef54019637e78011b024f555d14f2844bbfdefee60f14686",
         "agents/openai.yaml": "a443531c43d720d1f28a75668f77073c8b8545d410662b1123090b8524ace468"
       },
       "tool_dependencies": [
@@ -170,7 +171,7 @@
   ],
   "catalog": {
     "repo": "Route_Generator_MCP_Skills",
-    "commit": "5b5625a",
+    "commit": "0f406d1",
     "skill_count": 10,
     "skills": [
       {
@@ -245,5 +246,5 @@
       }
     ]
   },
-  "bundle_sha256": "7e3a7e5e8690eb5ff62933ca3367fab9ddd6c788076159a7dd50d3a7245d4e7d"
+  "bundle_sha256": "a282aad9a7e876ab7603f1dd676978967ea0bb598f420094562abe1b3333ed19"
 }

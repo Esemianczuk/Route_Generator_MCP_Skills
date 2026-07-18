@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.8
+
+- Treats compact `route.get_session` continuity results as a one-lookup terminal state instead of polling large revision payloads.
+- Makes explicit undo/redo one-call operations and stops after either a successful change or a safe no-op.
+- Makes each selected POI insertion terminal and idempotent when the same POI is already attached.
+- Strengthens the nearby access-fallback eval to require exactly one POI mutation call.
+
 ## 0.3.7
 
 - Routes plain explicit named anchors directly through one multi-point generation call; the POI/road ingredient planner remains required only for discoverable ingredients.

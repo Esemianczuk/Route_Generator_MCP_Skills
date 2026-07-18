@@ -30,7 +30,7 @@ For a requested loop that should start at ranked non-private parking, use `route
 
 For an existing route and "your choice", "best", or "nearest", call `route.search_cached_pois` and then `route.add_poi_stop` for the selected candidate in the same turn. A search result is not an added stop. Use `route.search_parking_anchors` for ranked non-private starts, and `route.plan_water_stops` or `route.plan_poi_stops` for repeated stop cadence on the current route.
 
-`route.add_poi_stop` normally inserts routable connector geometry. If a nearby POI cannot be connector-routed, it may return an `access_only` immutable revision with unchanged geometry, `geometry_detour_inserted: false`, and an explicit `access_offset_m`. Treat that as an added support marker with a short access offset, never as proof that the route passes through the POI.
+`route.add_poi_stop` normally inserts routable connector geometry. Call it exactly once per selected POI and treat its completion as terminal. If that POI was already inserted, `status: already_attached` with `changed: false` confirms the active route without another mutation; do not call it again. If a nearby POI cannot be connector-routed, it may return an `access_only` immutable revision with unchanged geometry, `geometry_detour_inserted: false`, and an explicit `access_offset_m`. Treat that as an added support marker with a short access offset, never as proof that the route passes through the POI.
 
 ## Postconditions
 

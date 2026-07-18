@@ -17,11 +17,11 @@ Prefer the smallest edit that satisfies the request.
 
 ## Workflow
 
-1. Identify the active route/tour and target span.
+1. Identify the active route/tour and target span. If continuity is unclear, call `route.get_session` once and use its compact active-route/lineage result; never poll it.
 2. For add-stop/road-avoid edits, isolate the span before changing it.
 3. Use CH-less edits for short local reroutes and multi-point generation for long or ingredient-heavy edits.
 4. After edits, summarize new route alias/id, distance delta, changed span, and available undo.
-5. Use `route.undo_tour` and `route.redo_tour` only for explicit undo/redo requests. A structured `status: no_op` with `changed: false` means history had no applicable revision; report the returned active route and do not treat that safe no-op as a tool failure.
+5. Use `route.undo_tour` and `route.redo_tour` exactly once and only for explicit undo/redo requests. A successful change or structured `status: no_op` with `changed: false` is terminal; report the returned active route and do not poll session state or repeat the mutation.
 
 Use these exact mutation paths:
 

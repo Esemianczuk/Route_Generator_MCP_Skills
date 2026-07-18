@@ -4,6 +4,7 @@
 
 - Always pass the current session id for follow-up requests about "this route", "latest route", "route 2", weather, images, edits, imports, or comparisons.
 - Use route aliases (`R1`, `R2`) or `route_selector: "active"` before asking users for raw route ids.
+- Call `route.get_session` at most once per turn when continuity must be recovered. Its default response is deliberately compact and includes route lineage, headline metrics, `can_undo`, `undo_target_route_id`, and a terminal completion signal; use `include_raw: true` only for an explicit external-client need. Do not poll it.
 - After generation or import, summarize the active route before doing optional follow-ups.
 - Present route/workspace IDs as plain identifiers. They are not files or provider-local assets, so never fabricate `sandbox:`, download, or file links for them.
 - A route with `ingredient_verification.status: verified` and a satisfied distance check is complete. Report its actual distance without offering another tuning pass unless the user explicitly requested tighter precision.
@@ -17,7 +18,7 @@
 - `route.generate_named_road_route`: desired road-name ingredients. Resolve and report road confidence first.
 - `route.plan_ingredient_options`: pre-generation ingredient ordering and feasibility planning when roads, POIs, stop cadence, or mixed discoverable ingredients are requested. Do not call it for plain explicit named/geocoded waypoint anchors. It accepts a structured geocoded area or a named `area_query`/string compatibility input. Area-centered `loop` and `best_in_area` requests use the area center as the planning start, and repeated stops without an explicit target cadence default to evenly spaced interior loop slots; `min_spacing_m` remains a lower bound and does not disable that distribution. Hard-infeasible network packs and partial packs with any unresolved mandatory ingredient are never recommended. A null recommendation or zero generation budget is a hard stop; candidates and option packs are diagnostic, not model-constructible generation arguments.
 
-- `route.undo_tour`: returns the parent revision when available. If the active route has no parent revision, it returns a successful structured no-op (`status: no_op`, `changed: false`) together with the unchanged active route instead of surfacing an MCP execution error.
+- `route.undo_tour`: call exactly once for an explicit undo. It returns the parent revision when available. If the active route has no parent revision, it returns a successful structured no-op (`status: no_op`, `changed: false`) together with the unchanged active route instead of surfacing an MCP execution error. Both outcomes are terminal for the turn.
 
 ## Local Cached POIs First
 
@@ -34,7 +35,7 @@ Only use `route.search_pois` when the local cached tool reports shortfall, unava
 ## Editing Invariants
 
 - `route.reverse_route` asks the route engine for a legal directional reverse, stores it as a lineage revision, and rejects empty results or distance drift outside 0.80-1.20 of the source. On rejection the source remains active; surface the failure instead of describing a new route.
-- `route.add_poi_stop` normally stores connector geometry. When the graph cannot route to a nearby candidate inside the bounded access threshold, it may instead return an immutable `access_only` revision with preserved geometry, a POI marker, `geometry_detour_inserted: false`, and `access_offset_m`. Describe it as a nearby support stop, not as a route-through or detour.
+- `route.add_poi_stop` normally stores connector geometry and returns a compact terminal completion envelope. Call it once per selected POI. When that POI was already inserted, it returns `status: already_attached` and `changed: false`; never call it again. When the graph cannot route to a nearby candidate inside the bounded access threshold, it may instead return an immutable `access_only` revision with preserved geometry, a POI marker, `geometry_detour_inserted: false`, and `access_offset_m`. Describe it as a nearby support stop, not as a route-through or detour.
 
 ## Visual Families
 
