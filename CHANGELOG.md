@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.7
+
+- Routes plain explicit named anchors directly through one multi-point generation call; the POI/road ingredient planner remains required only for discoverable ingredients.
+- Treats successful one-route results and their compact completion envelope as terminal for the response, preventing model-driven distance and soft-preference retry loops.
+- Documents safe undo no-op behavior and the common multi-point `mode` alias.
+- Adds the ordered-named-anchor semantic regression, bringing the mock suite to 25 cases.
+
 ## 0.3.2
 
 - Documents bracketed server-side distance calibration so required-stop routes converge instead of oscillating around the requested distance.

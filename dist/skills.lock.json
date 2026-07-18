@@ -1,8 +1,8 @@
 {
   "lock_version": 1,
-  "bundle_version": "0.3.6",
+  "bundle_version": "0.3.7",
   "repo": "Route_Generator_MCP_Skills",
-  "repo_commit": "8d65c41cf07e05348231f2555279cb60eb44aa77",
+  "repo_commit": "5b5625a6b7701ef75b70b7e8e714b5c4205f2639",
   "formats": [
     "agentskills.io",
     "codex-local-skills",
@@ -65,9 +65,9 @@
     },
     {
       "name": "route-editing-tour",
-      "sha256": "aa4750025be210777d09ced25b4fba96ddf806a2b0d08ad29647d4e6b783bd8f",
+      "sha256": "f7a607f0aa7fd8f7894f177198f2d8ee9157881dc02a3b9f38215ba871da8846",
       "files": {
-        "SKILL.md": "249058397fca5413ea0af450efe5839b3849b5007fa8b3512d26715e9fc285de",
+        "SKILL.md": "22ef1e13eda7bf1c4203cf81d0693b7c2ffd5adc4ef7d99f64cd2fec0209e9eb",
         "agents/openai.yaml": "f8f6d63c548e80491d2a17c35c4736e8b31a637eeed8b7d51690da99f24a8c43"
       },
       "tool_dependencies": [
@@ -85,9 +85,9 @@
     },
     {
       "name": "route-generator-core",
-      "sha256": "2c35c2657ada1ea6ef360d2da2a575b781cccdb5465370f6e6dcd37d75935120",
+      "sha256": "580a482b00740c3d332060ae2cf28e090c7806f745648d1d5c7e651258a9a3d6",
       "files": {
-        "SKILL.md": "a0f5baf8ad8774d6358a0fb2e5c337b5ee396f56a664beffbd0690e005f5de6a",
+        "SKILL.md": "5e6e90bca59a085ea161a6dc77abe96b1f4074aa89eb1f397c5083f3440f2496",
         "agents/openai.yaml": "7af650b9093c8aa842bff3b6da902408a071f92b12d5f168dced57abce24ad3e",
         "references/route-tools.md": "b92880b7bcd723bb34a542b6169823ff21af22d7655ed2295eeaa11f5c6d0ef6"
       },
@@ -104,9 +104,9 @@
     },
     {
       "name": "route-ingredient-planning",
-      "sha256": "0f1c629e9a48681a57fe90405bcfcadc45d11893d4539c5c7b09f88bce09bb26",
+      "sha256": "9a27152d823ba193149ad85f03656a1e608d8dacac814b24e211778ecb579eae",
       "files": {
-        "SKILL.md": "991cbf623b61362f0c079b5f4790e18443a287864e159c96266a7a926deda83e",
+        "SKILL.md": "3bf66633a6a5231f10739fb9226b1acf177b7ffdd98912dfb0b0de945899a2e2",
         "agents/openai.yaml": "526b4054167081b9feeb96598d0d0ad476bc3b8cb5c935e7dd51edf04051237c",
         "references/agent-recipes.md": "c3a673b95e5d2689267c2ee3bb12f23f3cc13a22e9a41db9d9d5b417390b2cc3"
       },
@@ -170,7 +170,7 @@
   ],
   "catalog": {
     "repo": "Route_Generator_MCP_Skills",
-    "commit": "8d65c41",
+    "commit": "5b5625a",
     "skill_count": 10,
     "skills": [
       {
@@ -245,5 +245,5 @@
       }
     ]
   },
-  "bundle_sha256": "70ba5dcc8129a53b8ebab8173062c11990cdeeee48488889cb1473c3745dc335"
+  "bundle_sha256": "7e3a7e5e8690eb5ff62933ca3367fab9ddd6c788076159a7dd50d3a7245d4e7d"
 }
