@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.7
+
+- Makes area-centered `best_in_area` ingredient planning use the same distributed loop-slot semantics as `loop`.
+- Treats every unresolved mandatory ingredient as a hard generation stop instead of permitting a partial pack to redefine the user's requested stop count.
+- Exposes named-area input resolution in the compact planner result for clearer model and operator diagnostics.
+
 ## 0.2.6
 
 - Keeps count-only repeated stops free of model-invented cadence so the planner can distribute them across the requested route distance.
