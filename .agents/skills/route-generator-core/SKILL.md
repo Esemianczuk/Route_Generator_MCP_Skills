@@ -20,7 +20,7 @@ Start by preserving session state. Use the current session id for every route to
 1. Clarify only missing essentials: location/anchors, route mode, distance/units, activity profile, and count. Call `route.geocode_locations` when named anchors do not yet have coordinates.
 2. If the request contains mandatory stops, stop cadence, named roads, exclusions tied to specific ingredients, or mixed route ingredients, hand off to route-ingredient-planning before generation. Do not generate a baseline route first.
 3. For an ordinary route with no mandatory ingredients, generate with `route.generate_routes`. For a planned ingredient route, copy the planner's `recommended_next_call.arguments` into exactly one `route.generate_multi_point_route` call.
-4. After generation, summarize the returned route names/aliases, distance, ascent, climbs, surfaces, ingredient verification, warnings, and artifacts. For ingredient-planned routes, the default 3D profile should already show climb callouts and support-stop POIs; do not add a redundant render call.
+4. After generation, summarize the returned route names/aliases, distance, ascent, climbs, surfaces, ingredient verification, warnings, and artifacts. Copy distance, ascent, and climb count from the generated route's top-level `summary`; do not substitute a nested diagnostic or independently recalculate them. For ingredient-planned routes, the default 3D profile should already show climb callouts and support-stop POIs; do not add a redundant render call or offer to render the profile that was already returned.
 5. For follow-ups like "tell me about it", call `route.summarize_route`; do not generate again.
 6. Mention images only when the latest tool result returned image artifacts.
 

@@ -24,7 +24,7 @@ def _write_zip(skill_dir: Path, destination: Path) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build deterministic, self-contained skill zip files.")
-    parser.add_argument("--version", default="0.2.7")
+    parser.add_argument("--version", default="0.2.8")
     parser.add_argument("--out", type=Path, default=Path("dist/installable"))
     args = parser.parse_args()
     root = repo_root()

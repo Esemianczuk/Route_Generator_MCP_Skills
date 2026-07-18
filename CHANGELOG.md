@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.8
+
+- Makes the finalized route-analysis arc pass the canonical ascent total while preserving raw profile ascent as a diagnostic when the values differ.
+- Requires final chat summaries to copy canonical top-level route metrics and not offer a redundant render when the default profile image was returned.
+
 ## 0.2.7
 
 - Makes area-centered `best_in_area` ingredient planning use the same distributed loop-slot semantics as `loop`.
