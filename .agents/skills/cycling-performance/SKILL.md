@@ -17,7 +17,7 @@ Call `route.evaluate_cycling_performance` before answering cycling physics or nu
 
 ## Inputs To Preserve
 
-Pass explicit user values: FTP, rider weight, bike type, tire type, handling skill, bottle count/size, drink mix, departure time, and weather inclusion. Let the tool infer defaults only when the user does not specify them.
+Pass explicit user values: requested average pace, FTP, rider weight, bike type, tire type, handling skill, bottle count/size, drink mix, departure time, ambient temperature/humidity/wind, and weather inclusion. Use `average_speed_mph`/`average_speed_kph` for a user-prescribed pace and `temperature_f`/`temperature_c` for stated conditions that are not a forecast. Let the tool infer defaults only when the user does not specify them. Do not fall back to hand-estimated hydration or timing while a stored route is available.
 
 Request chart imagery for ETA/speed/hydration. Request map imagery only when the user asks where on the route, support locations, slow sections, or timing markers should be shown.
 

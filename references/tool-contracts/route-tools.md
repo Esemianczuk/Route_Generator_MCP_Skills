@@ -3,7 +3,7 @@
 ## Session Discipline
 
 - Direct MCP clients should pass their current session id for follow-up requests about "this route", "latest route", "route 2", weather, images, edits, imports, or comparisons. Provider-managed anonymous chats deliberately keep that identifier in backend state: call the matching bounded workflow tool with omitted identifiers and let it infer the visitor's active route; do not list sessions.
-- Use route aliases (`R1`, `R2`) or `route_selector: "active"` before asking users for raw route ids.
+- Use route aliases (`R1`, `R2`) or `route_selector: "active"` before asking users for raw route ids. The schema accepts the backend's active/current/selected/this-route aliases as well as first/latest/shortest/longest/hilliness selectors.
 - Call `route.get_session` at most once per turn when continuity must be recovered. Its default response is deliberately compact and includes route lineage, headline metrics, `can_undo`, `undo_target_route_id`, and a terminal completion signal; use `include_raw: true` only for an explicit external-client need. Do not poll it.
 - After generation or import, summarize the active route before doing optional follow-ups.
 - Present route/workspace IDs as plain identifiers. They are not files or provider-local assets, so never fabricate `sandbox:`, download, or file links for them.
@@ -48,4 +48,4 @@ Ingredient-planned multi-point generation returns a default 3D profile image wit
 
 ## Cycling Physics
 
-Use `route.evaluate_cycling_performance` for cycling ETA, speed, FTP, bike/tire setup, hydration, sweat, sodium, calories, carbs, handling, and where-the-rider-will-be questions. Do not estimate these directly when a route is stored.
+Use `route.evaluate_cycling_performance` for cycling ETA, speed, FTP, bike/tire setup, hydration, sweat, sodium, calories, carbs, handling, and where-the-rider-will-be questions. A user-prescribed pace can be passed as `average_speed_mph`/`average_speed_kph`; the route physics solves for required power and reports whether it reached that pace. Pass stated non-forecast conditions as `temperature_f`/`temperature_c`, optional humidity, and wind. Do not estimate these directly when a route is stored.

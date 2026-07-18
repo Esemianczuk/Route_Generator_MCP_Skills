@@ -36,7 +36,14 @@ def plan_tools(prompt: str, skills: str) -> list[str]:
         for phrase in ["in that order", "mandatory anchors", "explicit mandatory anchors", "passing through", "route through"]
     )
     asks_named_roads = any(word in text for word in ["specific road", "named road", "blue mound", "county road", "hwy", "highway"])
-    asks_water_stops = "water" in text and ("stop" in text or "refill" in text)
+    asks_cycling_performance = any(
+        word in text
+        for word in ["ftp", "watts", "hydration", "sweat", "bike setup", "tires", "how fast", "how long"]
+    ) or (
+        any(word in text for word in ["bottle", "water supply", "cycling pace", "mph pace", "kph pace"])
+        and any(word in text for word in ["enough", "sufficient", "pace", "evaluate"])
+    )
+    asks_water_stops = "water" in text and ("stop" in text or "refill" in text) and not asks_cycling_performance
     asks_fuel_stops = any(word in text for word in ["gas", "fuel"]) and any(word in text for word in ["stop", "every", "route"])
     if "list" in text and "tool" in text:
         tools.append("route.tool_index")
@@ -58,7 +65,7 @@ def plan_tools(prompt: str, skills: str) -> list[str]:
         tools.append("route.plan_water_stops" if skilled else "route.search_pois")
         if not skilled and ("route" in text or "from " in text):
             tools.append("route.generate_multi_point_route")
-    elif any(word in text for word in ["coffee", "gas", "fuel", "parking", "cafe", "restroom"]):
+    elif any(word in text for word in ["coffee", "gas", "fuel", "parking", "cafe", "restroom"]) and not asks_cycling_performance:
         if "parking" in text:
             tools.append("route.search_parking_anchors" if skilled else "route.search_pois")
         else:
@@ -97,7 +104,7 @@ def plan_tools(prompt: str, skills: str) -> list[str]:
         tools.append("route.render_highlight_image")
     if "2d map" in text or "satellite map" in text or "topo" in text:
         tools.append("route.render_map_image")
-    if any(word in text for word in ["ftp", "watts", "hydration", "sweat", "bike setup", "tires", "how fast", "how long"]):
+    if asks_cycling_performance:
         tools.append("route.evaluate_cycling_performance" if skilled else "route.summarize_route")
     if "undo" in text:
         tools.append("route.undo_tour")

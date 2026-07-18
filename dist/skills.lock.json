@@ -1,8 +1,8 @@
 {
   "lock_version": 1,
-  "bundle_version": "0.3.10",
+  "bundle_version": "0.3.11",
   "repo": "Route_Generator_MCP_Skills",
-  "repo_commit": "386b0754c7dd6d190578313a21af919b48ce7ecc",
+  "repo_commit": "ae61d1889b30ffa318efb1a5dd988dca1ea28da0",
   "formats": [
     "agentskills.io",
     "codex-local-skills",
@@ -19,9 +19,9 @@
   "skills": [
     {
       "name": "cycling-performance",
-      "sha256": "a032d6ddc91b7f9eeabc96cebc6915b0762bc7e86128357e8f2608e1eb77ee6c",
+      "sha256": "9bfd8e413bb7c3419efe4967a0c77f07b2a26853878087108f28dcbb3b55a180",
       "files": {
-        "SKILL.md": "5978794c4e396d928fe5f868136de51b379bf2266418df1f9f2e87baf2e52d04",
+        "SKILL.md": "c4f26bef669595c2d2f91b6b5366893926f4fb3e1d10ade8f556bd25bd71af31",
         "agents/openai.yaml": "d3d29cf2a68588e4a2133047443887de70a7c7adcd782818ba4b900e0865d7fc"
       },
       "tool_dependencies": [
@@ -171,7 +171,7 @@
   ],
   "catalog": {
     "repo": "Route_Generator_MCP_Skills",
-    "commit": "386b075",
+    "commit": "ae61d18",
     "skill_count": 10,
     "skills": [
       {
@@ -246,5 +246,5 @@
       }
     ]
   },
-  "bundle_sha256": "bc6d575a78a685539f809b6e9dd19886158c1f768beab0d2fa6da0460d985fb9"
+  "bundle_sha256": "f547755547dfabc4715a1080dc1063a2416ebf21cf2bdf8363525493e175eb21"
 }

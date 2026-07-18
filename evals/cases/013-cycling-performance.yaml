@@ -1,2 +1,1 @@
-{"id":"013-cycling-performance","expected_skill":"cycling-performance","prompt":"If I have 200 watt FTP and weigh 120 lb on a road bike, how long will this take and how much water should I bring?","must_call":["route.evaluate_cycling_performance"],"must_not_call":["route.summarize_route"]}
-
+{"id":"013-cycling-performance","expected_skill":"cycling-performance","prompt":"At 82 F, with two 620 ml bottles and no refill until the restroom stop, is my water supply sufficient? Evaluate the active route at a fixed 15 mph cycling pace using the route physics tool; do not hand-estimate it.","must_call":["route.evaluate_cycling_performance"],"exact_call_counts":{"route.evaluate_cycling_performance":1},"must_not_call":["route.summarize_route","route.list_sessions"]}

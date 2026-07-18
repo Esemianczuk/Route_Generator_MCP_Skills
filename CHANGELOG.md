@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.11
+
+- Adds fixed cycling-pace solving and explicit ambient temperature/humidity/wind inputs to route-aware hydration and performance analysis.
+- Accepts the natural pace aliases models commonly use and aligns active/current route-selector schema values with the backend.
+- Strengthens the cycling eval to require one physics call for a 15 mph, 82 F, two-bottle sufficiency question instead of hand estimates.
+
 ## 0.3.10
 
 - Keeps provider-chain rollover notes out of visitor intent routing and stops rollover from requesting session polling.
