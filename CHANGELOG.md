@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.6
+
+- Keeps count-only repeated stops free of model-invented cadence so the planner can distribute them across the requested route distance.
+- Treats area-centered `best_in_area` planning like a loop for repeated-stop placement and documents named-area compatibility inputs.
+- Extends the Madison water-stop eval to forbid redundant water-source searches after ingredient planning.
+
 ## 0.2.5
 
 - Keeps multi-point compatibility aliases simple enough for provider-native structured calls.
