@@ -34,7 +34,7 @@ Only use `route.search_pois` when the local cached tool reports shortfall, unava
 
 ## Editing Invariants
 
-- `route.reverse_route` asks the route engine for a legal directional reverse, stores it as a lineage revision, and rejects empty results or distance drift outside 0.80-1.20 of the source. On rejection the source remains active; surface the failure instead of describing a new route.
+- `route.reverse_route` resolves the selected route, or the persisted active/latest route when provider-managed context is omitted. Cached engine routes use the engine's legal directional reverse; locally composed or imported routes rebuild the reversed stored shape through Route Intelligence matching. Both paths preserve lineage and attached POIs at reversed route positions, and reject empty results or distance drift outside 0.80-1.20 of the source. On rejection the source remains active; surface the failure instead of describing a new route.
 - `route.add_poi_stop` normally stores connector geometry and returns a compact terminal completion envelope. Call it once per selected POI. When that POI was already inserted, it returns `status: already_attached` and `changed: false`; never call it again. When the graph cannot route to a nearby candidate inside the bounded access threshold, it may instead return an immutable `access_only` revision with preserved geometry, a POI marker, `geometry_detour_inserted: false`, and `access_offset_m`. Describe it as a nearby support stop, not as a route-through or detour.
 
 ## Visual Families

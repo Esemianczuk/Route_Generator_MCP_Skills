@@ -20,8 +20,8 @@ python scripts/run_eval_suite.py --mode mock --skills default --out reports/defa
 python scripts/compare_skill_runs.py reports/baseline/results.json reports/default/results.json --out reports/skill_delta.md
 python scripts/mcp_smoke.py --mock
 python scripts/validate_skills.py
-python scripts/generate_skills_lock.py --version 0.3.2
-python scripts/build_installable_skills.py --version 0.3.2
+python scripts/generate_skills_lock.py --version 0.3.13
+python scripts/build_installable_skills.py --version 0.3.13
 python scripts/run_codex_evals.py --out reports/codex-native-final
 ROUTE_MCP_ACCESS_TOKEN='<test-only-key>' python scripts/run_remote_mcp_evals.py \
   --base-url http://127.0.0.1:8002 \
@@ -37,7 +37,7 @@ python scripts/run_openai_remote_semantic_evals.py --execute \
 
 `run_eval_suite.py` is a fast deterministic planner regression, not evidence of native skill execution. `run_codex_evals.py` invokes `codex exec` in an isolated, read-only session, verifies the selected `.agents/skills/<name>/SKILL.md` was actually opened through native progressive disclosure, and grades its ordered MCP tool plan. `run_remote_mcp_evals.py` is deliberately a **catalog-binding gate only**: it uses the official Python SDK, rejects overlapping catalogs, and proves that every planned tool belongs to exactly one live server.
 
-`run_openai_remote_semantic_evals.py --execute` is the provider-semantic gate. It sends exactly two OpenAI Responses `type: "mcp"` tools, grades actual `mcp_list_tools`/`mcp_call` output items for all 20 scenarios, carries explicit route workspaces across stateful follow-ups, proves undo/redo through remote calls, requires an owner-bound staged upload for the import case, rejects route `function_call` output, and can verify bad-token/unavailable-endpoint failures do not fall back locally. It records non-secret response, server, catalog, skill, workspace, route, artifact, latency, and usage evidence. Omit `--execute` for a redacted plan.
+`run_openai_remote_semantic_evals.py --execute` is the provider-semantic gate. It sends exactly two OpenAI Responses `type: "mcp"` tools, grades actual `mcp_list_tools`/`mcp_call` output items for all 27 scenarios, carries explicit route workspaces across stateful follow-ups, proves undo/redo and active-tour reversal through remote calls, requires an owner-bound staged upload for the import case, rejects route `function_call` output, and can verify bad-token/unavailable-endpoint failures do not fall back locally. It records non-secret response, server, catalog, skill, workspace, route, artifact, latency, and usage evidence. Omit `--execute` for a redacted plan.
 
 For the combined hosted-Skills lane, pass `--skill-refs-json dist/openai.skills.json --require-native-skills`. A skill counts as read only when the provider response includes both a relevant Shell `SKILL.md` command and a successful Shell output. Do not enable a public model in the hosted-Skills allowlist until this combined gate passes against staging.
 
