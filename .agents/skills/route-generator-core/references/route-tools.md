@@ -1,6 +1,6 @@
 # Route Tool Selection
 
-- Use `route.generate_routes` for best-in-area, loop, or ordinary point-to-point generation.
+- Use `route.generate_routes` for best-in-area, loop, or ordinary point-to-point generation. Pass `count: 1` for one/single/default; use 2-3 only when the user asks for alternatives or a comparison.
 - Use `route.plan_ingredient_options` before generation for any new route with ordered anchors, mandatory stops, named roads, or mixed ingredients.
 - Use `route.generate_multi_point_route` once only when the planner returned exact recommended arguments and an external generation budget of one. Copy those arguments verbatim without adding fields. A null recommendation or zero budget forbids generation; never build from candidate packs or manually replay planner-provided fallback packs.
 - Use `route.tool_index` only for an explicit catalog/help request, never as a prelude to an ordinary route task.

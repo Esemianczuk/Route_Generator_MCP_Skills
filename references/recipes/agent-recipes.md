@@ -3,7 +3,7 @@
 ## New Scenic Route With Summary
 
 1. Geocode if needed.
-2. Call `route.generate_routes` with mode, distance, count, criteria, and session id.
+2. Call `route.generate_routes` with mode, distance, count, criteria, and session id. Use `count: 1` unless the user explicitly asks for multiple alternatives.
 3. Summarize each returned route by alias/name, distance, ascent, climbs, surfaces, and any warnings.
 4. Mention images only when image artifacts were returned.
 
