@@ -1,8 +1,8 @@
 {
   "lock_version": 1,
-  "bundle_version": "0.3.11",
+  "bundle_version": "0.3.12",
   "repo": "Route_Generator_MCP_Skills",
-  "repo_commit": "ae61d1889b30ffa318efb1a5dd988dca1ea28da0",
+  "repo_commit": "c11480467f10ca757af155ee9d453147bddee4bd",
   "formats": [
     "agentskills.io",
     "codex-local-skills",
@@ -19,12 +19,13 @@
   "skills": [
     {
       "name": "cycling-performance",
-      "sha256": "9bfd8e413bb7c3419efe4967a0c77f07b2a26853878087108f28dcbb3b55a180",
+      "sha256": "d634245613b8a9a33900791358ac12fb4e4607539ee28d01ffdb3794aa268683",
       "files": {
-        "SKILL.md": "c4f26bef669595c2d2f91b6b5366893926f4fb3e1d10ade8f556bd25bd71af31",
+        "SKILL.md": "da11cac192999cd684ad2564f5995ab8d8e98572be17468e7fe15c51491f8f3f",
         "agents/openai.yaml": "d3d29cf2a68588e4a2133047443887de70a7c7adcd782818ba4b900e0865d7fc"
       },
       "tool_dependencies": [
+        "route.analyze_weather",
         "route.evaluate_cycling_performance"
       ]
     },
@@ -158,20 +159,21 @@
     },
     {
       "name": "route-weather",
-      "sha256": "2e912ed1c2fc2e2f0a94fef9926e65f0d43ceaabfde41a2f75541e327ec36537",
+      "sha256": "3a19f1f942cd8a68307d27381cda76b4118949075f03feedaa126089ed035cd5",
       "files": {
-        "SKILL.md": "132422dbc839e12eb2c7b95683d7db23807c9c826cb95b17b2b3dccb8990522a",
+        "SKILL.md": "3f903e6154b87527c69b1db728b1e33108b15a56769c2cc44bd24248d4e103ae",
         "agents/openai.yaml": "604aa4a11a7896a967dcd45c82021515f8198f192884117caf01c4102234b091"
       },
       "tool_dependencies": [
         "route.analyze_weather",
+        "route.evaluate_cycling_performance",
         "route.render_weather_image"
       ]
     }
   ],
   "catalog": {
     "repo": "Route_Generator_MCP_Skills",
-    "commit": "ae61d18",
+    "commit": "c114804",
     "skill_count": 10,
     "skills": [
       {
@@ -246,5 +248,5 @@
       }
     ]
   },
-  "bundle_sha256": "f547755547dfabc4715a1080dc1063a2416ebf21cf2bdf8363525493e175eb21"
+  "bundle_sha256": "fec16f631233ecb827c365cd31c6458c9902c1a7da0cebd9f0c50e92d2ac035f"
 }

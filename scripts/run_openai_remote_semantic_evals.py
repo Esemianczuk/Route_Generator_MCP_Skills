@@ -51,6 +51,7 @@ DEFAULT_ORDER = [
     "011-3d-profile",
     "012-map-zoom",
     "013-cycling-performance",
+    "026-weather-performance-deadline",
     "014-bike-setup",
     "015-import-gpx",
     "016-avoid-road-edit",
@@ -72,6 +73,7 @@ PRIMARY_WORKSPACE_CASES = {
     "011-3d-profile",
     "012-map-zoom",
     "013-cycling-performance",
+    "026-weather-performance-deadline",
     "014-bike-setup",
     "016-avoid-road-edit",
     "017-tour-leg",
@@ -325,8 +327,8 @@ def _load_cases(root: Path) -> dict[str, JsonDict]:
     for path in sorted((root / "evals" / "cases").glob("*.yaml")):
         case = json.loads(path.read_text(encoding="utf-8"))
         cases[str(case["id"])] = case
-    if len(cases) != 25:
-        raise SystemExit(f"Expected exactly 25 eval cases, found {len(cases)}.")
+    if len(cases) != 26:
+        raise SystemExit(f"Expected exactly 26 eval cases, found {len(cases)}.")
     if set(cases) != set(DEFAULT_ORDER):
         raise SystemExit("The checked-in cases do not match the certified semantic execution schedule.")
     return cases
