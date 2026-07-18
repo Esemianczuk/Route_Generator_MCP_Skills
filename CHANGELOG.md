@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.9
+
+- Tightens the default distance tolerance for ingredient-planned routes from 10% to 5% while keeping distance-only correction inside one external MCP generation call.
+- Adds a regression case requiring a single model-visible generation call even when the server must calibrate a required-stop route's distance.
+
 ## 0.2.8
 
 - Makes the finalized route-analysis arc pass the canonical ascent total while preserving raw profile ascent as a diagnostic when the values differ.

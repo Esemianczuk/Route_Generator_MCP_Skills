@@ -1,8 +1,8 @@
 {
   "lock_version": 1,
-  "bundle_version": "0.2.8",
+  "bundle_version": "0.2.9",
   "repo": "Route_Generator_MCP_Skills",
-  "repo_commit": "2bcd2c77fa66d2d1e38883e0c1b2a802cb5f58be",
+  "repo_commit": "49ce0b7f9d8c11e45c1b54eab63880d59daefacf",
   "formats": [
     "agentskills.io",
     "codex-local-skills",
@@ -168,7 +168,7 @@
   ],
   "catalog": {
     "repo": "Route_Generator_MCP_Skills",
-    "commit": "2bcd2c7",
+    "commit": "49ce0b7",
     "skill_count": 10,
     "skills": [
       {
@@ -243,5 +243,5 @@
       }
     ]
   },
-  "bundle_sha256": "13deebc6fff5c74769c6301b6121c93b9130658705ff58abb08a77d309cf0e7a"
+  "bundle_sha256": "6973cd3461b6202a5e089594067dfb9219ee6aee200b625f58bbc1c9a1019495"
 }
