@@ -1,8 +1,8 @@
 {
   "lock_version": 1,
-  "bundle_version": "0.3.4",
+  "bundle_version": "0.3.5",
   "repo": "Route_Generator_MCP_Skills",
-  "repo_commit": "73e2c2331d50d17134c9fb0ea19dfafd45d1b3a2",
+  "repo_commit": "ac5bd26c606544a1456f565bdbd1691d3232204e",
   "formats": [
     "agentskills.io",
     "codex-local-skills",
@@ -65,9 +65,9 @@
     },
     {
       "name": "route-editing-tour",
-      "sha256": "731bfdb66977aa65a34da9b06f3a4e4ba6c10269da98388816c8a41b5f872aad",
+      "sha256": "aa4750025be210777d09ced25b4fba96ddf806a2b0d08ad29647d4e6b783bd8f",
       "files": {
-        "SKILL.md": "b0f8f1316e6452115dbf067b1a53ea165876ad201159ed26c97d61cdb9b4e3cc",
+        "SKILL.md": "249058397fca5413ea0af450efe5839b3849b5007fa8b3512d26715e9fc285de",
         "agents/openai.yaml": "f8f6d63c548e80491d2a17c35c4736e8b31a637eeed8b7d51690da99f24a8c43"
       },
       "tool_dependencies": [
@@ -79,14 +79,15 @@
         "route.geocode_locations",
         "route.plan_avoidance_edit",
         "route.redo_tour",
+        "route.reverse_route",
         "route.undo_tour"
       ]
     },
     {
       "name": "route-generator-core",
-      "sha256": "66854f883de0546fad204b9fca1aa6aa4d76f878823bcc8890ee02590c1bf2a2",
+      "sha256": "2c35c2657ada1ea6ef360d2da2a575b781cccdb5465370f6e6dcd37d75935120",
       "files": {
-        "SKILL.md": "1ec36fc5b3b588d355a68268a9200d89458740060ad1f693ae1ba609a9be6dfa",
+        "SKILL.md": "a0f5baf8ad8774d6358a0fb2e5c337b5ee396f56a664beffbd0690e005f5de6a",
         "agents/openai.yaml": "7af650b9093c8aa842bff3b6da902408a071f92b12d5f168dced57abce24ad3e",
         "references/route-tools.md": "b92880b7bcd723bb34a542b6169823ff21af22d7655ed2295eeaa11f5c6d0ef6"
       },
@@ -96,6 +97,7 @@
         "route.generate_routes",
         "route.geocode_locations",
         "route.plan_ingredient_options",
+        "route.regenerate_routes",
         "route.summarize_route",
         "route.tool_index"
       ]
@@ -168,7 +170,7 @@
   ],
   "catalog": {
     "repo": "Route_Generator_MCP_Skills",
-    "commit": "73e2c23",
+    "commit": "ac5bd26",
     "skill_count": 10,
     "skills": [
       {
@@ -243,5 +245,5 @@
       }
     ]
   },
-  "bundle_sha256": "ca847da63b0501fd90ba1bbda83524bfc16536725bc942847c95859a396e2a99"
+  "bundle_sha256": "38026c0a1d6c8621a009d7df5f7bf056e78c57ec422a7ecae219f14ef53dc1b3"
 }

@@ -12,6 +12,7 @@
 ## Generation Families
 
 - `route.generate_routes`: best-in-area, loop, or point-to-point generation only when a new route has no mandatory POIs/stops/ingredients. Pass `count: 1` for one/single/default and use 2-3 only when the user explicitly requests alternatives or comparison. `criteria.traffic: avoid` is a soft scoring preference below the engine's hard-filter threshold; `strongly_avoid` and `strictly_avoid` are progressively hard constraints and must reflect explicit user wording. The tool accepts advanced top-level `weights`; copy a failed result's `retry_suggestions[].set` there on at most one corrective retry without changing the original mode, distance, units, or count. Never use this tool after `route.plan_ingredient_options`.
+- `route.regenerate_routes`: broad retries or changes to an existing route. Pass `based_on_route_id`/`route_id` when known, or pass `route_workspace_id`/`session_id` and the server infers that workspace's active route. Do not manufacture a route id or fail merely because `based_on_route_id` was omitted when active workspace context is present.
 - `route.generate_multi_point_route`: ordered anchors, tour legs, water/fuel stop every N miles, or multi-criteria point-to-point tours. For an ingredient plan, call it exactly once only when `recommended_next_call` is non-null and `external_generation_call_budget` is one. Provider-native MCP receives a compact, owner-bound `{ingredient_plan_ref: ...}`; pass that object alone and never reconstruct or add waypoints, distance, or fallback packs. The server hydrates the canonical plan, owns up to two same-pack distance calibrations within a three-attempt hard cap, and returns one final stored route. The first distance correction is proportional; when two observed results bracket the target, the final correction interpolates inside that bracket to avoid oscillating between over- and undershoot. Ingredient plans default to a 5% target-distance tolerance. The MCP accepts string `generation_mode` and integer `variants` only as compatibility aliases for imperfect clients that are not using a plan reference.
 - `route.generate_named_road_route`: desired road-name ingredients. Resolve and report road confidence first.
 - `route.plan_ingredient_options`: pre-generation ingredient ordering and feasibility planning when many roads/POIs/stops are requested. It accepts a structured geocoded area or a named `area_query`/string compatibility input. Area-centered `loop` and `best_in_area` requests use the area center as the planning start, and repeated stops without an explicit target cadence default to evenly spaced interior loop slots; `min_spacing_m` remains a lower bound and does not disable that distribution. Hard-infeasible network packs and partial packs with any unresolved mandatory ingredient are never recommended. A null recommendation or zero generation budget is a hard stop; candidates and option packs are diagnostic, not model-constructible generation arguments.
@@ -25,6 +26,10 @@ Use cached/local Route Intelligence tools before live Overpass:
 - `route.search_cached_pois` / `route.plan_poi_stops`
 
 Only use `route.search_pois` when the local cached tool reports shortfall, unavailable category, or a specialized tag request.
+
+## Editing Invariants
+
+- `route.reverse_route` asks the route engine for a legal directional reverse, stores it as a lineage revision, and rejects empty results or distance drift outside 0.80-1.20 of the source. On rejection the source remains active; surface the failure instead of describing a new route.
 
 ## Visual Families
 

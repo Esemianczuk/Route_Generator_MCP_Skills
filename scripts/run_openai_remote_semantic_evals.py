@@ -34,11 +34,13 @@ SINGLE_ARTIFACT_CASES = {
 DEFAULT_ORDER = [
     "001-loop-generation",
     "002-summary-followup",
+    "023-regenerate-active-workspace",
     "007-coffee-stop",
     "018-undo-redo",
     "003-named-roads",
     "004-water-stops",
     "021-area-loop-water-stops",
+    "022-server-distance-calibration",
     "005-fuel-stops",
     "006-parking-anchor",
     "008-weather-headwind",
@@ -57,6 +59,7 @@ DEFAULT_ORDER = [
 PRIMARY_WORKSPACE_CASES = {
     "001-loop-generation",
     "002-summary-followup",
+    "023-regenerate-active-workspace",
     "007-coffee-stop",
     "018-undo-redo",
     "008-weather-headwind",
@@ -69,7 +72,7 @@ PRIMARY_WORKSPACE_CASES = {
     "016-avoid-road-edit",
     "017-tour-leg",
 }
-CONTINUATION_CASES = {"002-summary-followup", "007-coffee-stop", "018-undo-redo"}
+CONTINUATION_CASES = {"002-summary-followup", "023-regenerate-active-workspace", "007-coffee-stop", "018-undo-redo"}
 HOST_INSTRUCTIONS = """You are executing the Route Generator remote-MCP semantic release suite.
 Use the connected remote MCP servers to perform the request, not merely describe a plan. Trust remote tool
 descriptions and returned identifiers. Never invent success, route state, skill reads, or artifacts. Never use a
@@ -318,10 +321,10 @@ def _load_cases(root: Path) -> dict[str, JsonDict]:
     for path in sorted((root / "evals" / "cases").glob("*.yaml")):
         case = json.loads(path.read_text(encoding="utf-8"))
         cases[str(case["id"])] = case
-    if len(cases) != 21:
-        raise SystemExit(f"Expected exactly 21 eval cases, found {len(cases)}.")
+    if len(cases) != 23:
+        raise SystemExit(f"Expected exactly 23 eval cases, found {len(cases)}.")
     if set(cases) != set(DEFAULT_ORDER):
-        raise SystemExit("The checked-in cases do not match the certified 20-case execution schedule.")
+        raise SystemExit("The checked-in cases do not match the certified semantic execution schedule.")
     return cases
 
 
@@ -529,7 +532,7 @@ def _negative_probe(
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Execute the 20 semantic cases through OpenAI provider-native remote MCP.")
+    parser = argparse.ArgumentParser(description="Execute the 23 semantic cases through OpenAI provider-native remote MCP.")
     parser.add_argument("--execute", action="store_true", help="Make provider and remote MCP calls. Omit for a redacted plan.")
     parser.add_argument("--base-url", default="https://mcpapi.sherpa-map.com")
     parser.add_argument("--openai-base-url", default="https://api.openai.com/v1")

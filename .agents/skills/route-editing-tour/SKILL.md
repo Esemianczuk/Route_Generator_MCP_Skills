@@ -28,6 +28,7 @@ Use these exact mutation paths:
 - Avoid a named road or distance span: `route.analyze_osrm_segments` -> `route.plan_avoidance_edit` -> `route.apply_avoidance_edit`.
 - Add a generated conversational leg: `route.geocode_locations` when the destination is text, then `route.extend_tour`.
 - Merge, split, keep/remove a window, append, or prepend stored routes: `route.edit_tour`.
+- Reverse a route legally: `route.reverse_route`. A successful reverse is a new lineage revision and must remain within the server's distance-drift safety envelope; if it fails that invariant, report the failure and keep the source route active.
 - Undo/redo: `route.undo_tour` or `route.redo_tour`.
 
 Do not regenerate the entire route with `route.generate_routes` when a local revision tool can preserve the current route and lineage.
@@ -39,3 +40,4 @@ Keep generated tours as new versions with lineage rather than overwriting hidden
 - The new route version preserves lineage and reports changed spans and distance delta.
 - The active route alias/id is explicit.
 - Undo availability is reported without performing undo unless requested.
+- A reverse never silently activates a route whose distance drifted beyond the legal-reverse safety envelope.
