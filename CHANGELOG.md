@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.9
+
+- Keeps persisted-route POI planning and local avoidance edits inside bounded tool lanes instead of session polling or accidental regeneration.
+- Distinguishes an explicit undo command from edit instructions that merely require undo history to be preserved.
+- Documents common generation surface aliases so `gravel`, `dirt`, `trail`, and `bike_path` can be sent directly without a schema-error retry.
+
 ## 0.3.8
 
 - Treats compact `route.get_session` continuity results as a one-lookup terminal state instead of polling large revision payloads.
