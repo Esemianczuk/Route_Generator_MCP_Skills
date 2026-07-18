@@ -37,4 +37,4 @@
 
 ## Troubleshooting
 
-If the tool result conflicts with the text, trust tool artifacts and state. If route context is missing, call a session/list/summarize tool before asking the user to paste ids.
+If the tool result conflicts with the text, trust tool artifacts and state. In provider-managed chat, call the requested workflow tool directly first because it infers the active route; do not list or poll sessions. If that direct result explicitly reports ambiguous context, make at most one compact session lookup before asking the user for an id.

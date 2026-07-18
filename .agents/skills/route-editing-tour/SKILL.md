@@ -17,7 +17,7 @@ Prefer the smallest edit that satisfies the request.
 
 ## Workflow
 
-1. Identify the active route/tour and target span. If continuity is unclear, call `route.get_session` once and use its compact active-route/lineage result; never poll it.
+1. Identify the active route/tour and target span. In a provider-managed chat, call the matching edit/analysis tool directly with omitted identifiers so it can infer the visitor's persisted active route; do not list sessions. Only when a direct tool explicitly reports ambiguous continuity may you call `route.get_session` once and use its compact active-route/lineage result; never poll it.
 2. For add-stop/road-avoid edits, isolate the span before changing it.
 3. Use CH-less edits for short local reroutes and multi-point generation for long or ingredient-heavy edits.
 4. After edits, summarize new route alias/id, distance delta, changed span, and available undo.

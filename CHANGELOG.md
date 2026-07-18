@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.10
+
+- Keeps provider-chain rollover notes out of visitor intent routing and stops rollover from requesting session polling.
+- Routes highway-like/highest-traffic span requests through the localized analysis-and-avoidance edit workflow.
+- Makes provider-managed follow-ups use tools' active-route inference before any explicit continuity lookup.
+
 ## 0.3.9
 
 - Keeps persisted-route POI planning and local avoidance edits inside bounded tool lanes instead of session polling or accidental regeneration.

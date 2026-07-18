@@ -2,7 +2,7 @@
 
 ## Session Discipline
 
-- Always pass the current session id for follow-up requests about "this route", "latest route", "route 2", weather, images, edits, imports, or comparisons.
+- Direct MCP clients should pass their current session id for follow-up requests about "this route", "latest route", "route 2", weather, images, edits, imports, or comparisons. Provider-managed anonymous chats deliberately keep that identifier in backend state: call the matching bounded workflow tool with omitted identifiers and let it infer the visitor's active route; do not list sessions.
 - Use route aliases (`R1`, `R2`) or `route_selector: "active"` before asking users for raw route ids.
 - Call `route.get_session` at most once per turn when continuity must be recovered. Its default response is deliberately compact and includes route lineage, headline metrics, `can_undo`, `undo_target_route_id`, and a terminal completion signal; use `include_raw: true` only for an explicit external-client need. Do not poll it.
 - After generation or import, summarize the active route before doing optional follow-ups.
