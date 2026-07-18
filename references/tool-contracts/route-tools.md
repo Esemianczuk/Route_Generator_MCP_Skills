@@ -25,11 +25,14 @@ Use cached/local Route Intelligence tools before live Overpass:
 - `route.search_parking_anchors`
 - `route.search_cached_pois` / `route.plan_poi_stops`
 
+`route.search_cached_pois` accepts route-position aliases (`route_portion`, `route_fraction`, `route_distance_m`, `route_mile`, `route_km`) and ranks or filters cached candidates against the active route before numbering them. Do not fall back to live Overpass merely because the user asked for the first half, middle, or a route mile.
+
 Only use `route.search_pois` when the local cached tool reports shortfall, unavailable category, or a specialized tag request.
 
 ## Editing Invariants
 
 - `route.reverse_route` asks the route engine for a legal directional reverse, stores it as a lineage revision, and rejects empty results or distance drift outside 0.80-1.20 of the source. On rejection the source remains active; surface the failure instead of describing a new route.
+- `route.add_poi_stop` normally stores connector geometry. When the graph cannot route to a nearby candidate inside the bounded access threshold, it may instead return an immutable `access_only` revision with preserved geometry, a POI marker, `geometry_detour_inserted: false`, and `access_offset_m`. Describe it as a nearby support stop, not as a route-through or detour.
 
 ## Visual Families
 

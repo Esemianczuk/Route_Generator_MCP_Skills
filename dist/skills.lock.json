@@ -1,8 +1,8 @@
 {
   "lock_version": 1,
-  "bundle_version": "0.3.5",
+  "bundle_version": "0.3.6",
   "repo": "Route_Generator_MCP_Skills",
-  "repo_commit": "ac5bd26c606544a1456f565bdbd1691d3232204e",
+  "repo_commit": "8d65c41cf07e05348231f2555279cb60eb44aa77",
   "formats": [
     "agentskills.io",
     "codex-local-skills",
@@ -122,9 +122,9 @@
     },
     {
       "name": "route-poi-stops",
-      "sha256": "de7a008d9b102d62451ba0e318b886e3240d37fb6ff23d001e13967dba964509",
+      "sha256": "44ba1915e3df5a8ab9f115a2fd3aad1789704596fc2bf6e13588ba61783e9759",
       "files": {
-        "SKILL.md": "af0901134931677576971ba68e3ebee36261bdfc8c3a45e3cb00d1c0119758e2",
+        "SKILL.md": "979b0d2e336a260818406702345c255abe9b4e432001d44fe5b7440ab85b6c93",
         "agents/openai.yaml": "a443531c43d720d1f28a75668f77073c8b8545d410662b1123090b8524ace468"
       },
       "tool_dependencies": [
@@ -170,7 +170,7 @@
   ],
   "catalog": {
     "repo": "Route_Generator_MCP_Skills",
-    "commit": "ac5bd26",
+    "commit": "8d65c41",
     "skill_count": 10,
     "skills": [
       {
@@ -245,5 +245,5 @@
       }
     ]
   },
-  "bundle_sha256": "38026c0a1d6c8621a009d7df5f7bf056e78c57ec422a7ecae219f14ef53dc1b3"
+  "bundle_sha256": "70ba5dcc8129a53b8ebab8173062c11990cdeeee48488889cb1473c3745dc335"
 }
