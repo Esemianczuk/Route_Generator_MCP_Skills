@@ -1,8 +1,8 @@
 {
   "lock_version": 1,
-  "bundle_version": "0.3.2",
+  "bundle_version": "0.3.3",
   "repo": "Route_Generator_MCP_Skills",
-  "repo_commit": "af41eb37cbdfd8b3e5e954a128dd36290644db15",
+  "repo_commit": "1a549521a754bfc2eb9d5cc8ef97fcb4a0c2dd14",
   "formats": [
     "agentskills.io",
     "codex-local-skills",
@@ -84,11 +84,11 @@
     },
     {
       "name": "route-generator-core",
-      "sha256": "6d8b88811645b380169c250652ae2725e78fc4a90dccc409d318c1dd96e6f66c",
+      "sha256": "804275b6cb6a5e4e72ae2e28f8ebe0adce67eb308657770c22dcddec1f35fcc5",
       "files": {
-        "SKILL.md": "9cdba8e22b0cfbc6c01fcf15ea316ac4fcf3c541595f62c622e5f57bde5e3501",
+        "SKILL.md": "b011a7b31692501bdf5d1fdbff7aec5d18d3c43d1fd1a9224ed959ffcffafbb3",
         "agents/openai.yaml": "7af650b9093c8aa842bff3b6da902408a071f92b12d5f168dced57abce24ad3e",
-        "references/route-tools.md": "0af138ef94c2f89780a29c3a1a9f4ddfd9725831b7832777165c560d72caeb11"
+        "references/route-tools.md": "8d31b595787f1082009170f16144b4ce256d40aed0ce085296e35a74a9a9b976"
       },
       "tool_dependencies": [
         "route.generate_multi_point_route",
@@ -168,7 +168,7 @@
   ],
   "catalog": {
     "repo": "Route_Generator_MCP_Skills",
-    "commit": "af41eb3",
+    "commit": "1a54952",
     "skill_count": 10,
     "skills": [
       {
@@ -243,5 +243,5 @@
       }
     ]
   },
-  "bundle_sha256": "fa81df8797ac4f97a2d3d566e8e116d735ce7afca115e136cd99dcfc3a24136f"
+  "bundle_sha256": "c3fa01a8b15ac2c63ad411e4f23148d474b7a0384b94cbf6ffa6f63ca60fed32"
 }
