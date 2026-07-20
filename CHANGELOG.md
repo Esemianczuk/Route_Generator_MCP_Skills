@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.14
+
+- Adds calibrated likely-singletrack guidance for imported and stored routes without replacing authoritative surface or match data.
+- Teaches cycling analysis to use returned MTB Blue physics, original-surface evidence, handling-risk spans, and explicit road/gravel/XC-MTB setup comparisons.
+- Adds shared singletrack map/profile highlighting and two mock regressions for analysis/zoom and bike-setup workflows.
+
 ## 0.3.13
 
 - Makes active-tour reversal infer persisted state when identifiers are omitted in a provider-managed chat.

@@ -18,11 +18,13 @@ Analyze stored route data before guessing.
 ## Workflow
 
 1. Call `route.summarize_route` for route identity and stored data availability.
-2. Use section-specific analysis tools for surfaces, road/path split, climbs/rises, OSRM road names, scenic/traffic/curviness attributes, or off-network spans.
+2. Use section-specific analysis tools for surfaces, road/path split, climbs/rises, OSRM road names, scenic/traffic/curviness attributes, or off-network spans. `route.analyze_surfaces` also returns calibrated `likely_singletrack` spans when unknown/unpaved/dirt geometry contains the required turn-window signature.
 3. If the user asks to avoid or fix a section, isolate the span first, then use an edit/regeneration tool.
 4. State confidence and missing data plainly.
 
 Never claim scenic/traffic/surface data is unavailable until a summary/analysis tool confirms it.
+
+Treat likely singletrack as route-shape evidence, not an authoritative trail difficulty tag. Report its distance range, original surface, evidence/confidence, and the MTB Blue physics classification. Use `cycling-performance` for bike/tire/skill consequences instead of estimating them here.
 
 ## Postconditions
 

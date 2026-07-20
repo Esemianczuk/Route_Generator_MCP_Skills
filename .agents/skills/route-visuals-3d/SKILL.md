@@ -24,6 +24,8 @@ Choose the visual family by intent.
 
 Use `zoom_mode` or selection framing only when the user asks to zoom/crop/hug/focus. Whole-route requests should stay whole-route with selected spans highlighted.
 
+For inferred trail-like portions, use `route.render_highlight_image` with `highlight_attribute: "singletrack"`. Use `highlight_selector: "all"` for route-wide context or `"longest"` plus `zoom_to_selection: true` only when the user asks to inspect/zoom the most likely section. Keep the label “likely singletrack”; do not present it as a confirmed trail grade.
+
 For "3D terrain" do not use the hill-profile ribbon. For "hill profile" do not use the terrain cutout unless the user asks for terrain.
 
 ## Postconditions

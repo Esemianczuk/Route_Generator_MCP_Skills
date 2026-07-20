@@ -1,8 +1,8 @@
 {
   "lock_version": 1,
-  "bundle_version": "0.3.13",
+  "bundle_version": "0.3.14",
   "repo": "Route_Generator_MCP_Skills",
-  "repo_commit": "0a3c8c1bc90f5486fb80f005ae53642c21a59cdb",
+  "repo_commit": "e6973797f1f03c15b2349f6afde692ea31aa1212",
   "formats": [
     "agentskills.io",
     "codex-local-skills",
@@ -19,9 +19,9 @@
   "skills": [
     {
       "name": "cycling-performance",
-      "sha256": "d634245613b8a9a33900791358ac12fb4e4607539ee28d01ffdb3794aa268683",
+      "sha256": "1a8b95abd071726326c79998630f7908c3de8d921ae749e2b77285784b7d2591",
       "files": {
-        "SKILL.md": "da11cac192999cd684ad2564f5995ab8d8e98572be17468e7fe15c51491f8f3f",
+        "SKILL.md": "09371b4d4217dd0ae7ef6599c44ef7dab89596e709b4b950ee18d1ed84322310",
         "agents/openai.yaml": "d3d29cf2a68588e4a2133047443887de70a7c7adcd782818ba4b900e0865d7fc"
       },
       "tool_dependencies": [
@@ -31,12 +31,13 @@
     },
     {
       "name": "imported-course-analysis",
-      "sha256": "9a56d1751b6580c58a38a4285ea1331fb42023a41e2d5b42bb1b7a7f99441eba",
+      "sha256": "8cef41eb93b9df805f0c6b3d099fb6d0752349ee46ba17a651ab89ada75fee90",
       "files": {
-        "SKILL.md": "69811f8ada604b82ca4da97afb225cc2c8007abfa7b8e713a2cf904cbec2852a",
+        "SKILL.md": "6c66691531fcee6d4c763b4619e2ccae90780c56782e8391662581b3e0fb8c88",
         "agents/openai.yaml": "a006ded12eb6d662f819ee35f1da1bee9e46d0305c49be86e6f96b50628d9802"
       },
       "tool_dependencies": [
+        "route.analyze_surfaces",
         "route.import_route"
       ]
     },
@@ -55,12 +56,13 @@
     },
     {
       "name": "route-analysis-debug",
-      "sha256": "e2427903fd1d057fccdf3572f7a1e62a29a318b2d723bd185ce835f6a6c5bbb7",
+      "sha256": "c0f728ad5c427921aa70469db8897ef3dd28497a391044cb4a45bf0fb17908b3",
       "files": {
-        "SKILL.md": "f208431e095b74978051bd6df853916f41b06e6bdc0b6f370f9f71b013455a22",
+        "SKILL.md": "f731002672294b4b1f3dfe454be96a639fbfdc3965f929995bda916bacece851",
         "agents/openai.yaml": "8e03b8646c2262991ad19da7fe0d03dcf7ac3350041abbea378010d325a2c044"
       },
       "tool_dependencies": [
+        "route.analyze_surfaces",
         "route.summarize_route"
       ]
     },
@@ -145,9 +147,9 @@
     },
     {
       "name": "route-visuals-3d",
-      "sha256": "fb171cce9fb8e265bace8ff0c43756fb2863021e64619d485b0038cb90f714f2",
+      "sha256": "f4f01c078243adec303c3d992eca26e7810d0332f98e4a0fff2b1ad4246bef5b",
       "files": {
-        "SKILL.md": "b06ba3d9e80a892a087c5a4b0104193ccc13cc4febe939c13b93d9bf53a16f4d",
+        "SKILL.md": "0395b0aa3e53f5c5cb793b1bdaf355c422682ef6eac9ba7b495cc7318bc078c3",
         "agents/openai.yaml": "018c4b9a5059e9c3b9c1dee5fdd611bb658f8233eec413426bdc851a2bf32749"
       },
       "tool_dependencies": [
@@ -173,7 +175,7 @@
   ],
   "catalog": {
     "repo": "Route_Generator_MCP_Skills",
-    "commit": "0a3c8c1",
+    "commit": "e697379",
     "skill_count": 10,
     "skills": [
       {
@@ -248,5 +250,5 @@
       }
     ]
   },
-  "bundle_sha256": "ae24e2a411467ec540e4c8c0f60feed5020ce90c21a2bdbcd980f4196498832b"
+  "bundle_sha256": "c17b4372b0e216ed881a59c1a90573f29cd29a24abd820da44b4ff686b66b1d5"
 }

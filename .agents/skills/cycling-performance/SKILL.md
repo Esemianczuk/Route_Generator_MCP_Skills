@@ -15,6 +15,8 @@ Do not use for running/driving estimates or generic route summaries that do not 
 
 Call `route.evaluate_cycling_performance` before answering cycling physics or nutrition questions.
 
+The tool automatically runs the calibrated likely-singletrack detector on unknown/unpaved/dirt route geometry. Qualifying points receive MTB Blue rolling, turn-speed, aerodynamic, bike/tire, and handling-skill physics while the result retains the original surface and labels the classification as inferred. Do not replace this with a generic unpaved speed penalty or claim the inferred grade is an authoritative trail tag.
+
 ## Inputs To Preserve
 
 Pass explicit user values: requested average pace, FTP, rider weight, bike type, tire type, handling skill, bottle count/size, drink mix, departure time, ambient temperature/humidity/wind, and weather inclusion. Use `average_speed_mph`/`average_speed_kph` for a user-prescribed pace and `temperature_f`/`temperature_c` for stated conditions that are not a forecast. Let the tool infer defaults only when the user does not specify them. Do not fall back to hand-estimated hydration or timing while a stored route is available.
@@ -23,10 +25,11 @@ For a forecast-aware ETA, first follow `route-weather` and call `route.analyze_w
 
 Request chart imagery for ETA/speed/hydration. Request map imagery only when the user asks where on the route, support locations, slow sections, or timing markers should be shown.
 
-Compare setups with separate scenario inputs rather than answering from generic deltas.
+Compare setups with explicit entries in the tool's `setups` input rather than answering from generic deltas. For likely-singletrack questions, compare the rider's actual setup against a relevant gravel/XC-MTB/MTB alternative and use returned `sections.likely_singletrack` plus `sections.handling_risk` to explain where the difference occurs.
 
 ## Postconditions
 
 - Results state explicit user inputs separately from inferred defaults.
 - Compared setups use independent scenarios and explain meaningful deltas.
+- Likely-singletrack spans are identified as inferred, and setup/skill conclusions come from the route physics result.
 - Charts and maps are requested only when they answer the user’s actual question.

@@ -41,6 +41,7 @@ Only use `route.search_pois` when the local cached tool reports shortfall, unava
 
 - `route.render_map_image`: top-down map/satellite/OSM/topo/relief images.
 - `route.render_highlight_image`: graph plus highlight map or 3D hill-profile ribbon. Use `view_type: "profile_3d"` for elevation-ribbon profile views.
+- For likely singletrack, use `highlight_attribute: "singletrack"`; use `highlight_selector: "all"` for whole-route context and `"longest"` with `zoom_to_selection: true` only for a requested close-up.
 - `route.render_terrain_image`: terrain cutout / 3D landscape / route draped on ground.
 - `route.render_weather_image`: weather cards, weather maps, or weather 3D profile views.
 
@@ -49,3 +50,5 @@ Ingredient-planned multi-point generation returns a default 3D profile image wit
 ## Cycling Physics
 
 Use `route.evaluate_cycling_performance` for cycling ETA, speed, FTP, bike/tire setup, hydration, sweat, sodium, calories, carbs, handling, and where-the-rider-will-be questions. A user-prescribed pace can be passed as `average_speed_mph`/`average_speed_kph`; the route physics solves for required power and reports whether it reached that pace. Pass stated non-forecast conditions as `temperature_f`/`temperature_c`, optional humidity, and wind. For an arrival deadline, prefer `end_time`; `finish_time`, `arrival_time`, and `likely_end_time` are accepted aliases, just as `start_time` and `likely_start_time` alias `departure_time`. A combined forecast-plus-cycling-ETA request calls `route.analyze_weather` first and `route.evaluate_cycling_performance` second; neither tool substitutes for the other. Do not estimate these directly when a route is stored.
+
+The cycling tool automatically applies the calibrated likely-singletrack detector to unknown/unpaved/dirt geometry and uses MTB Blue physics only on qualifying points. It returns the original `source_surface`, inferred spans, and setup-specific handling risks. `route.analyze_surfaces` exposes the same inference without mutating authoritative surface data. Describe it as likely/inferred rather than a confirmed trail grade, and use explicit `setups` entries for bike/tire/skill comparisons.

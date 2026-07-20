@@ -26,7 +26,10 @@ def plan_tools(prompt: str, skills: str) -> list[str]:
     tools: list[str] = []
     asks_summary = any(word in text for word in ["summarize", "tell me about", "describe"])
     asks_tool_index = "list" in text and "tool" in text
-    asks_import = "import" in text or "gpx" in text or "ridewithgps" in text
+    asks_import = any(
+        phrase in text
+        for phrase in ["import this", "import my", "upload this", "dropped a gpx", ".gpx", ".fit", ".tcx", "ridewithgps gpx"]
+    )
     asks_regenerate = "regenerate" in text or "full retry" in text
     asks_troubleshooting = any(word in text for word in ["bridge returned", "non-json", "404", "failed", "error"])
     asks_reverse = "reverse" in text and any(word in text for word in ["route", "tour", "active", "current"])
@@ -44,6 +47,7 @@ def plan_tools(prompt: str, skills: str) -> list[str]:
         any(word in text for word in ["bottle", "water supply", "cycling pace", "mph pace", "kph pace"])
         and any(word in text for word in ["enough", "sufficient", "pace", "evaluate"])
     )
+    asks_singletrack = any(phrase in text for phrase in ["singletrack", "single track", "trail-like", "trail like"])
     asks_water_stops = "water" in text and ("stop" in text or "refill" in text) and not asks_cycling_performance
     asks_fuel_stops = any(word in text for word in ["gas", "fuel"]) and any(word in text for word in ["stop", "every", "route"])
     if "list" in text and "tool" in text:
@@ -77,7 +81,7 @@ def plan_tools(prompt: str, skills: str) -> list[str]:
             if "fuel" in text or "gas" in text or "every" in text:
                 tools.append("route.generate_multi_point_route")
     elif any(word in text for word in ["make", "generate", "create", "build", "route"]) and not (
-        asks_summary or asks_tool_index or asks_import or asks_troubleshooting or asks_edit_existing
+        asks_summary or asks_tool_index or asks_import or asks_troubleshooting or asks_edit_existing or asks_cycling_performance or asks_singletrack
     ):
         if "point to point" in text or "leg" in text or "tour" in text:
             tools.append("route.generate_multi_point_route")
@@ -88,6 +92,10 @@ def plan_tools(prompt: str, skills: str) -> list[str]:
     )
     if asks_summary:
         tools.append("route.summarize_route" if skilled else "route.generate_routes")
+    if asks_singletrack and skilled and not asks_cycling_performance:
+        tools.append("route.analyze_surfaces")
+        if any(word in text for word in ["map", "visual", "show", "zoom", "profile"]):
+            tools.append("route.render_highlight_image")
     if asks_avoidance:
         if skilled:
             tools.extend(["route.analyze_osrm_segments", "route.plan_avoidance_edit", "route.apply_avoidance_edit"])
