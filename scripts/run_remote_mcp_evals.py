@@ -47,8 +47,8 @@ def _load_cases(root: Path) -> dict[str, dict[str, Any]]:
     for path in sorted((root / "evals" / "cases").glob("*.yaml")):
         case = json.loads(path.read_text(encoding="utf-8"))
         cases[str(case["id"])] = case
-    if len(cases) != 27:
-        raise SystemExit(f"Expected exactly 27 checked-in eval cases, found {len(cases)}.")
+    if len(cases) != 29:
+        raise SystemExit(f"Expected exactly 29 checked-in eval cases, found {len(cases)}.")
     return cases
 
 
@@ -132,7 +132,7 @@ def main() -> None:
         "servers": servers,
         "cases": cases,
     }
-    payload["ok"] = payload["case_count"] == 27 and payload["pass_count"] == 27
+    payload["ok"] = payload["case_count"] == 29 and payload["pass_count"] == 29
     output_path = (root / args.out).resolve()
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")

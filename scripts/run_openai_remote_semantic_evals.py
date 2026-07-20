@@ -30,6 +30,7 @@ SINGLE_ARTIFACT_CASES = {
     "010-3d-terrain",
     "011-3d-profile",
     "012-map-zoom",
+    "028-likely-singletrack-analysis",
 }
 DEFAULT_ORDER = [
     "001-loop-generation",
@@ -50,9 +51,11 @@ DEFAULT_ORDER = [
     "010-3d-terrain",
     "011-3d-profile",
     "012-map-zoom",
+    "028-likely-singletrack-analysis",
     "013-cycling-performance",
     "026-weather-performance-deadline",
     "014-bike-setup",
+    "029-singletrack-bike-setup",
     "015-import-gpx",
     "016-avoid-road-edit",
     "017-tour-leg",
@@ -76,6 +79,8 @@ PRIMARY_WORKSPACE_CASES = {
     "013-cycling-performance",
     "026-weather-performance-deadline",
     "014-bike-setup",
+    "028-likely-singletrack-analysis",
+    "029-singletrack-bike-setup",
     "016-avoid-road-edit",
     "017-tour-leg",
 }
@@ -328,8 +333,8 @@ def _load_cases(root: Path) -> dict[str, JsonDict]:
     for path in sorted((root / "evals" / "cases").glob("*.yaml")):
         case = json.loads(path.read_text(encoding="utf-8"))
         cases[str(case["id"])] = case
-    if len(cases) != 27:
-        raise SystemExit(f"Expected exactly 27 eval cases, found {len(cases)}.")
+    if len(cases) != 29:
+        raise SystemExit(f"Expected exactly 29 eval cases, found {len(cases)}.")
     if set(cases) != set(DEFAULT_ORDER):
         raise SystemExit("The checked-in cases do not match the certified semantic execution schedule.")
     return cases
