@@ -31,9 +31,10 @@
 ## Imported GPX Course
 
 1. Import/match the course into the route session.
-2. Summarize confidence, distance, matched ratio, surfaces, roads, and off-network segments.
-3. Preserve the imported shape unless the user asks to reroute or edit.
-4. For sparse route files, use turn-point matching and flag intentional off-road/farm/private segments as analyzable off-network spans.
+2. Confirm that a dense activity's matched distance and projected geometry remain shape-faithful to the trace; sparse route points may instead be connected as graph controls.
+3. Summarize confidence, trace/matched distance, matched ratio, surfaces, roads, geometry gaps, and off-network segments.
+4. Preserve the imported shape unless the user asks to reroute or edit.
+5. For sparse route files, use turn-point matching and flag intentional off-road/farm/private segments as analyzable off-network spans.
 
 ## Troubleshooting
 

@@ -1,2 +1,1 @@
-{"id":"015-import-gpx","expected_skill":"imported-course-analysis","prompt":"Import this RideWithGPS GPX and tell me if the matched route has weird straight-line cuts.","must_call":["route.import_route"],"must_not_call":["route.generate_routes"]}
-
+{"id":"015-import-gpx","expected_skill":"imported-course-analysis","prompt":"Import this dense 45 km RideWithGPS activity. Preserve its shape, verify the matched distance did not grow from invented graph detours, and tell me about straight-line cuts, surfaces, and off-network spans.","must_call":["route.import_route"],"must_not_call":["route.generate_routes"]}
