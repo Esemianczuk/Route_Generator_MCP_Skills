@@ -18,6 +18,10 @@
 - `route.generate_named_road_route`: desired road-name ingredients. Resolve and report road confidence first.
 - `route.plan_ingredient_options`: pre-generation ingredient ordering and feasibility planning when roads, POIs, stop cadence, or mixed discoverable ingredients are requested. Do not call it for plain explicit named/geocoded waypoint anchors. It accepts a structured geocoded area or a named `area_query`/string compatibility input. Area-centered `loop` and `best_in_area` requests use the area center as the planning start, and repeated stops without an explicit target cadence default to evenly spaced interior loop slots; `min_spacing_m` remains a lower bound and does not disable that distribution. Hard-infeasible network packs and partial packs with any unresolved mandatory ingredient are never recommended. A null recommendation or zero generation budget is a hard stop; candidates and option packs are diagnostic, not model-constructible generation arguments.
 
+## Import Family
+
+- `route.import_route`: the single remote boundary for GPX, TCX, FIT, GeoJSON, JSON, and explicit-point imports. Dense activity tracks are projected to the graph in their original order; never graph-route between their samples or replace their shape with a newly generated course. Sparse route/course points are treated as controls and may be connected by legal graph paths. Treat `match.source.import_model`, trace versus matched distance, confidence, geometry gaps, off-network spans, surfaces, and likely-singletrack output as the import-quality contract. A dense result is valid only when its projected geometry stays on the trace-distance axis and does not silently add graph detours. Do not call `route.generate_routes` as an import fallback.
+
 - `route.undo_tour`: call exactly once for an explicit undo. It returns the parent revision when available. If the active route has no parent revision, it returns a successful structured no-op (`status: no_op`, `changed: false`) together with the unchanged active route instead of surfacing an MCP execution error. Both outcomes are terminal for the turn.
 
 ## Local Cached POIs First
