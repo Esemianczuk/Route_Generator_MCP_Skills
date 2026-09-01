@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.3.16
+
+- Teaches climb-only target-distance requests to use one ranked
+  `distance_fill` need with bounded counts, candidate screening, and a hard
+  distance band while keeping explicit IDs and counts exact.
+- Documents the owner-bound profile-CH chain contract: one model-visible
+  generation call, zero expensive generation jobs, separately reported CH
+  legs, and all-selected directed verification.
+- Strengthens the Driftless regression around a three-to-six-climb,
+  100-mile largest-climb chain without baseline generation or mutation.
+
 ## 0.3.15
 
 - Adds bounded regional climb counts and deterministic largest, steepest,

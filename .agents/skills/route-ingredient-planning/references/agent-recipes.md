@@ -13,3 +13,7 @@ For an existing stored route, use `route.plan_water_stops` or `route.plan_poi_st
 ## Mixed constraints
 
 Resolve roads, POIs, exclusions, and segment qualities into one ingredient plan before generation. Do not make unrelated searches and hope the final route joins them correctly.
+
+## Target-distance climb chains
+
+Follow `climb-route-intelligence`. Keep explicit ids/counts in exact mode. For a climb-only route whose count may flex to fit distance, send one ranked `climb_needs` entry with `climb_selection_mode: "distance_fill"`, bounded min/max counts, and a hard tolerance. Pass the one returned owner-bound plan reference into one `route.generate_multi_point_route` call. The server chooses/orders the CH chain; null planning, a failed distance band, or any unverified selected climb is a hard stop. Count returned CH legs separately from expensive generation jobs, which must remain zero for this mode.

@@ -21,6 +21,13 @@
 3. For an already-stored route, use `route.plan_water_stops` or `route.plan_poi_stops`; use add-stop edits only after the user confirms or delegates a candidate.
 4. Return verified stop names, mile markers, warnings, and the default 3D profile with climb callouts and POI markers. Render another view only when requested or when the default artifact is missing.
 
+## Target-Distance Climb Chain
+
+1. Geocode the area and use `route.query_climbs` once for the requested count/ranking context.
+2. For a climb-only chain whose count may flex, call `route.plan_ingredient_options` with exactly one ranked climb need, `climb_selection_mode: "distance_fill"`, bounded min/max counts, and the requested hard distance tolerance. For a roughly 100-mile Driftless loop use min 3, max 6, candidate limit 12, and tolerance 0.05. Explicit ids or exact counts stay in exact mode.
+3. Continue only from the non-null owner-bound plan reference and call `route.generate_multi_point_route` exactly once. Never generate a baseline, mutate a generic route, or construct a climb pack from results.
+4. Report success only when every selected climb and the hard distance band verify. Distinguish bounded internal `ch_leg_request_count` from `expensive_generation_request_count`, which must be zero for distance fill.
+
 ## Weather Decision
 
 1. Call `route.analyze_weather` first.
