@@ -34,7 +34,42 @@ def plan_tools(prompt: str, skills: str) -> list[str]:
     asks_troubleshooting = any(word in text for word in ["bridge returned", "non-json", "404", "failed", "error"])
     asks_reverse = "reverse" in text and any(word in text for word in ["route", "tour", "active", "current"])
     asks_edit_existing = asks_reverse or any(word in text for word in ["avoid", "don't end up", "do not end up", "reroute around", "add another", "leg to that tour"])
-    asks_new_route = any(word in text for word in ["make", "generate", "create", "build"]) and "route" in text
+    forbids_new_route = any(
+        phrase in text for phrase in ["do not make a route", "don't make a route", "do not generate a route", "informational only"]
+    )
+    asks_new_route = not forbids_new_route and (
+        (any(word in text for word in ["make", "generate", "create", "build", "give me"]) and "route" in text)
+        or ("loop" in text and any(word in text for word in ["make", "generate", "create", "build", "give me"]))
+    )
+    has_existing_area_context = any(phrase in text for phrase in ["existing area context", "supplied area context"])
+    has_selected_climb_id = any(phrase in text for phrase in ["climb id", "climb_id", "cl_eval_"])
+    has_prior_climb_selection = any(phrase in text for phrase in ["previous turn", "that one", "selected climb"])
+    asks_existing_route_climbs = "climb" in text and any(
+        phrase in text for phrase in ["on this route", "on the current route", "already on the route", "detected on the route"]
+    )
+    asks_climb_intelligence = (
+        "climb" in text
+        and not asks_existing_route_climbs
+        and any(
+            phrase in text
+            for phrase in [
+                "how many",
+                "cat 4",
+                "category 4",
+                "largest",
+                "steepest",
+                "hardest",
+                "fiets",
+                "climb id",
+                "climb_id",
+                "cl_eval_",
+                "add that one",
+                "chaining",
+                "chain the",
+                "incorporates the",
+            ]
+        )
+    )
     asks_ordered_anchors = any(
         phrase in text
         for phrase in ["in that order", "mandatory anchors", "explicit mandatory anchors", "passing through", "route through"]
@@ -54,11 +89,23 @@ def plan_tools(prompt: str, skills: str) -> list[str]:
         tools.append("route.tool_index")
     if asks_import:
         tools.append("route.import_route")
-    if any(word in text for word in ["geocode", "from ", " to ", "near ", "around ", "in "]):
-        if any(place in text for place in ["madison", "port washington", "brookfield", "sturgis", "wisconsin"]):
+    if not has_existing_area_context and any(word in text for word in ["geocode", "from ", " to ", "near ", "around ", "in "]):
+        if any(place in text for place in ["madison", "port washington", "brookfield", "sturgis", "wisconsin", "blue mounds", "driftless"]):
             tools.append("route.geocode_locations")
     if asks_regenerate:
         tools.append("route.regenerate_routes")
+    elif skilled and asks_climb_intelligence:
+        asks_climb_route = asks_new_route or "add that one" in text or (
+            "loop" in text and any(word in text for word in ["make", "generate", "create", "build"])
+        )
+        if asks_climb_route:
+            if has_selected_climb_id or has_prior_climb_selection:
+                tools.append("route.get_climb")
+            else:
+                tools.append("route.query_climbs")
+            tools.extend(["route.plan_ingredient_options", "route.generate_multi_point_route"])
+        else:
+            tools.append("route.query_climbs")
     elif skilled and asks_new_route and asks_ordered_anchors:
         tools.append("route.generate_multi_point_route")
     elif skilled and asks_new_route and (asks_named_roads or asks_water_stops or asks_fuel_stops):
@@ -109,7 +156,7 @@ def plan_tools(prompt: str, skills: str) -> list[str]:
             tools.append("route.render_weather_image")
     if "3d terrain" in text or "terrain cutout" in text or "google earth" in text:
         tools.append("route.render_terrain_image" if skilled else "route.render_highlight_image")
-    elif "3d" in text or "hill profile" in text or "biggest climb" in text:
+    elif "3d" in text or "hill profile" in text or ("biggest climb" in text and not asks_climb_intelligence):
         tools.append("route.render_highlight_image")
     if "2d map" in text or "satellite map" in text or "topo" in text:
         tools.append("route.render_map_image")

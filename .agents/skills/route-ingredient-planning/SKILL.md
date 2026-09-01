@@ -13,6 +13,8 @@ Use before generation when the request combines named roads, mandatory POIs, sto
 
 Do not use for a simple single-anchor loop, a single parking/start-anchor search, or an ordinary point-to-point request with no mandatory ingredients.
 
+Do not use this as the primary skill for regional climb counts, climb extrema, selected-climb detail, or a route defined by catalog climbs. Use climb-route-intelligence, which passes its selected climb ids into this shared planner contract.
+
 Prefer an explicit ingredient plan before trying a large generation.
 
 ## Workflow
