@@ -332,6 +332,8 @@ def _load_cases(root: Path) -> dict[str, JsonDict]:
     cases: dict[str, JsonDict] = {}
     for path in sorted((root / "evals" / "cases").glob("*.yaml")):
         case = json.loads(path.read_text(encoding="utf-8"))
+        if case.get("mock_only"):
+            continue
         cases[str(case["id"])] = case
     if len(cases) != 29:
         raise SystemExit(f"Expected exactly 29 eval cases, found {len(cases)}.")

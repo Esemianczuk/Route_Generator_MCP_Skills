@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.15
+
+- Adds bounded regional climb counts and deterministic largest, steepest,
+  hardest, and longest rankings backed by stable climb IDs.
+- Adds directed climb ingredients to mixed Route Intelligence planning, with
+  one owner-bound final generation call and entry-to-summit verification.
+- Adds Madison informational/routing, conversational selection, directed
+  verification, and Driftless climb-chain semantic regressions.
+
 ## 0.3.14
 
 - Adds calibrated likely-singletrack guidance for imported and stored routes without replacing authoritative surface or match data.

@@ -1,0 +1,13 @@
+interface:
+  display_name: "Climb Route Intelligence"
+  short_description: "Search, select, and route directed climbs"
+  default_prompt: "Use $climb-route-intelligence to find route-ready climbs and incorporate the selected climbs into one verified route."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "route-generator"
+      description: "Route Generator MCP server"
+      transport: "streamable_http"
+      url: "https://mcpapi.sherpa-map.com/mcp/route-generator"
+policy:
+  allow_implicit_invocation: true

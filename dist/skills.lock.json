@@ -1,8 +1,8 @@
 {
   "lock_version": 1,
-  "bundle_version": "0.3.14",
+  "bundle_version": "0.3.15",
   "repo": "Route_Generator_MCP_Skills",
-  "repo_commit": "e6973797f1f03c15b2349f6afde692ea31aa1212",
+  "repo_commit": "b7dfeb27f8fcde2e20d8c870fd3f542e98a9fcb7",
   "formats": [
     "agentskills.io",
     "codex-local-skills",
@@ -17,6 +17,22 @@
     ]
   },
   "skills": [
+    {
+      "name": "climb-route-intelligence",
+      "sha256": "3f04bc5529afe245c49d3dd71e3c05e19a19583bfa2c69179ee5769f82221032",
+      "files": {
+        "SKILL.md": "55b80ba8dc326827c1da80850e270892e57a6f6cae326726029fd06f93d0cea6",
+        "agents/openai.yaml": "a2441d65bc2709c553fbda06008c1c2ac642eaf29b54e908673a6827b889396d",
+        "references/climb-tools.md": "53d9ca2ab9ea663e733292eedfd9e2a7f376367c4823d6b87abb03096a66c398"
+      },
+      "tool_dependencies": [
+        "route.generate_multi_point_route",
+        "route.geocode_locations",
+        "route.get_climb",
+        "route.plan_ingredient_options",
+        "route.query_climbs"
+      ]
+    },
     {
       "name": "cycling-performance",
       "sha256": "1a8b95abd071726326c79998630f7908c3de8d921ae749e2b77285784b7d2591",
@@ -89,9 +105,9 @@
     },
     {
       "name": "route-generator-core",
-      "sha256": "0d1d75378fda5b3dfe5c4d2186aeca4ef405a12668adb45cd9e98925e2945be2",
+      "sha256": "0dca2a918bfbdff0ff1f07fd17460566be053758bed640f96c4ce51a389310de",
       "files": {
-        "SKILL.md": "b5668f00c661bb1b380091672ef3ee7aafad76a758dcf3c147192fa3791538cc",
+        "SKILL.md": "50e9a746b88936509c27f76e488f30bfbede263087f4c94c3c356e982bd73177",
         "agents/openai.yaml": "7af650b9093c8aa842bff3b6da902408a071f92b12d5f168dced57abce24ad3e",
         "references/route-tools.md": "b92880b7bcd723bb34a542b6169823ff21af22d7655ed2295eeaa11f5c6d0ef6"
       },
@@ -108,9 +124,9 @@
     },
     {
       "name": "route-ingredient-planning",
-      "sha256": "9a27152d823ba193149ad85f03656a1e608d8dacac814b24e211778ecb579eae",
+      "sha256": "0d3fccafaaa0e7b97009dd29b364963e6e7555825c6f7e97bf184549d7878617",
       "files": {
-        "SKILL.md": "3bf66633a6a5231f10739fb9226b1acf177b7ffdd98912dfb0b0de945899a2e2",
+        "SKILL.md": "e02bb9835cec04bf003a508a8146ecb426be0064cf23abd2f0caa369223df213",
         "agents/openai.yaml": "526b4054167081b9feeb96598d0d0ad476bc3b8cb5c935e7dd51edf04051237c",
         "references/agent-recipes.md": "c3a673b95e5d2689267c2ee3bb12f23f3cc13a22e9a41db9d9d5b417390b2cc3"
       },
@@ -175,9 +191,16 @@
   ],
   "catalog": {
     "repo": "Route_Generator_MCP_Skills",
-    "commit": "e697379",
-    "skill_count": 10,
+    "commit": "b7dfeb2",
+    "skill_count": 11,
     "skills": [
+      {
+        "name": "climb-route-intelligence",
+        "description": "Search a regional climb catalog, compare climb extrema, inspect a selected climb, or use one or more directed climbs as mandatory route ingredients. Use for Cat/Fiets questions, largest/steepest/hardest climb selection, \"add that climb\", and climb-chaining route requests; do not use for climbs detected only after a route already exists.",
+        "display_name": "Climb Route Intelligence",
+        "short_description": "Search, select, and route directed climbs",
+        "path": ".agents/skills/climb-route-intelligence"
+      },
       {
         "name": "cycling-performance",
         "description": "Cycling physics, setup, ETA, power, FTP, speed, hydration, sweat, sodium, calories, carbs, tire/bike choice, and rider handling analysis for stored routes. Use whenever a cycling user asks how long, how fast, how hard, what bike/tires, water/fuel needs, or where they will be when.",
@@ -250,5 +273,5 @@
       }
     ]
   },
-  "bundle_sha256": "c17b4372b0e216ed881a59c1a90573f29cd29a24abd820da44b4ff686b66b1d5"
+  "bundle_sha256": "32f26e280cc5bf06024bae22e7fb35f17f3ea0f9717d0f896e6c1193fc690dd1"
 }
